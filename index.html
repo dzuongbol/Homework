@@ -2,339 +2,232 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Học Tốt — Nhà Dương</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@400;600;700;800&display=swap');
+:root{
+  --primary:#6C63FF;--primary-light:#EEF0FF;--secondary:#FF6B6B;
+  --green:#6BCB77;--green-light:#EDFBEF;--orange:#FF9A3C;--orange-light:#FFF4E8;
+  --red:#FF6B6B;--red-light:#FFF0F0;--blue:#4ECDC4;
+  --text:#2D2D2D;--text-soft:#6B7280;--text-xsoft:#9CA3AF;
+  --bg:#F7F8FC;--card:#FFFFFF;--border:#E5E7EB;
+  --shadow:0 2px 12px rgba(108,99,255,0.08);--radius:16px;--radius-sm:10px;
+  --sidebar:220px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:15px;}
 
-  :root {
-    --primary: #6C63FF;
-    --primary-light: #EEF0FF;
-    --secondary: #FF6B6B;
-    --accent: #FFD93D;
-    --green: #6BCB77;
-    --green-light: #EDFBEF;
-    --orange: #FF9A3C;
-    --orange-light: #FFF4E8;
-    --red: #FF6B6B;
-    --red-light: #FFF0F0;
-    --blue: #4ECDC4;
-    --blue-light: #E8FAFA;
-    --text: #2D2D2D;
-    --text-soft: #6B7280;
-    --text-xsoft: #9CA3AF;
-    --bg: #F7F8FC;
-    --card: #FFFFFF;
-    --border: #E5E7EB;
-    --shadow: 0 2px 12px rgba(108,99,255,0.08);
-    --shadow-lg: 0 8px 32px rgba(108,99,255,0.15);
-    --radius: 16px;
-    --radius-sm: 10px;
-  }
+/* ── SCREENS ── */
+.screen{display:none;min-height:100vh;}
+.screen.active{display:flex;flex-direction:column;}
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+/* ── LOGIN ── */
+#screen-login{background:linear-gradient(145deg,#6C63FF,#9B93FF,#C4B5FD);align-items:center;justify-content:center;padding:24px;}
+.login-header{text-align:center;margin-bottom:32px;}
+.login-header .app-icon{font-size:56px;margin-bottom:8px;}
+.login-header h1{font-family:'Baloo 2',cursive;font-size:30px;font-weight:800;color:white;}
+.login-header p{color:rgba(255,255,255,0.8);font-size:14px;}
+.login-card{background:white;border-radius:24px;padding:24px 20px;width:100%;max-width:360px;box-shadow:0 20px 60px rgba(0,0,0,0.15);}
+.login-card h2{font-size:17px;font-weight:800;margin-bottom:18px;text-align:center;}
+.role-label{font-size:11px;font-weight:700;color:var(--text-soft);text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;}
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;}
+.role-btn{padding:12px 8px;border-radius:12px;border:2px solid var(--border);background:white;cursor:pointer;text-align:center;transition:all .2s;font-family:'Nunito',sans-serif;}
+.role-btn .av{font-size:26px;display:block;margin-bottom:3px;}
+.role-btn .nm{font-size:13px;font-weight:700;color:var(--text);display:block;}
+.role-btn .rt{font-size:11px;color:var(--text-soft);display:block;}
+.role-btn:hover{border-color:var(--primary);background:var(--primary-light);transform:translateY(-2px);}
 
-  body {
-    font-family: 'Nunito', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    font-size: 15px;
-  }
+/* ── APP LAYOUT ── */
+.app-layout{display:flex;min-height:100vh;}
 
-  /* ── SCREENS ── */
-  .screen { display: none; min-height: 100vh; }
-  .screen.active { display: flex; flex-direction: column; }
+/* ── SIDEBAR ── */
+.sidebar{width:var(--sidebar);background:white;border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;z-index:50;box-shadow:2px 0 12px rgba(0,0,0,0.06);}
+.sidebar-header{padding:20px 16px 16px;border-bottom:1px solid var(--border);}
+.sidebar-user{display:flex;align-items:center;gap:10px;}
+.sidebar-avatar{width:40px;height:40px;border-radius:50%;background:var(--primary-light);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.sidebar-name{font-weight:800;font-size:14px;line-height:1.2;}
+.sidebar-role{font-size:11px;color:var(--text-soft);}
+.sidebar-nav{flex:1;padding:12px 8px;overflow-y:auto;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:var(--radius-sm);cursor:pointer;transition:all .2s;margin-bottom:4px;border:none;background:none;width:100%;text-align:left;font-family:'Nunito',sans-serif;}
+.nav-item .nav-icon{font-size:18px;width:24px;text-align:center;flex-shrink:0;}
+.nav-item .nav-label{font-size:13px;font-weight:700;color:var(--text-soft);}
+.nav-item:hover{background:var(--bg);}
+.nav-item.active{background:var(--primary-light);}
+.nav-item.active .nav-label{color:var(--primary);}
+.sidebar-footer{padding:12px 8px;border-top:1px solid var(--border);}
+.logout-btn{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:var(--radius-sm);cursor:pointer;border:none;background:none;width:100%;font-family:'Nunito',sans-serif;color:var(--text-soft);font-size:13px;font-weight:700;}
+.logout-btn:hover{background:var(--red-light);color:var(--red);}
 
-  /* ── LOGIN SCREEN ── */
-  #screen-login {
-    background: linear-gradient(145deg, #6C63FF 0%, #9B93FF 50%, #C4B5FD 100%);
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-  }
-  .login-header { text-align: center; margin-bottom: 40px; }
-  .login-header .app-icon { font-size: 64px; margin-bottom: 12px; }
-  .login-header h1 { font-family: 'Baloo 2', cursive; font-size: 32px; font-weight: 800; color: white; }
-  .login-header p { color: rgba(255,255,255,0.8); font-size: 15px; margin-top: 4px; }
-  .login-card { background: white; border-radius: 24px; padding: 28px 24px; width: 100%; max-width: 380px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
-  .login-card h2 { font-size: 18px; font-weight: 800; color: var(--text); margin-bottom: 20px; text-align: center; }
-  .role-section { margin-bottom: 20px; }
-  .role-label { font-size: 12px; font-weight: 700; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px; }
-  .role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .role-btn {
-    padding: 14px 10px; border-radius: 14px; border: 2px solid var(--border);
-    background: white; cursor: pointer; text-align: center; transition: all 0.2s;
-    font-family: 'Nunito', sans-serif;
-  }
-  .role-btn .avatar { font-size: 28px; display: block; margin-bottom: 4px; }
-  .role-btn .name { font-size: 14px; font-weight: 700; color: var(--text); display: block; }
-  .role-btn .role-tag { font-size: 11px; color: var(--text-soft); display: block; }
-  .role-btn:hover { border-color: var(--primary); background: var(--primary-light); transform: translateY(-2px); }
-  .role-btn.admin:hover { border-color: var(--secondary); background: #FFF0F0; }
+/* ── MAIN CONTENT ── */
+.main-content{margin-left:var(--sidebar);flex:1;min-height:100vh;display:flex;flex-direction:column;}
+.page-header{padding:20px 24px 0;background:white;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:40;}
+.page-title{font-family:'Baloo 2',cursive;font-size:22px;font-weight:800;color:var(--text);margin-bottom:4px;}
+.page-sub{font-size:13px;color:var(--text-soft);padding-bottom:16px;}
+.page-body{padding:20px 24px;flex:1;}
 
-  /* ── TOP NAV ── */
-  .topnav {
-    background: white; padding: 14px 16px 10px;
-    display: flex; align-items: center; justify-content: space-between;
-    box-shadow: 0 1px 8px rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 100;
-  }
-  .topnav-left { display: flex; align-items: center; gap: 10px; }
-  .topnav-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; background: var(--primary-light); }
-  .topnav-name { font-weight: 800; font-size: 15px; color: var(--text); }
-  .topnav-role { font-size: 11px; color: var(--text-soft); }
-  .topnav-right { display: flex; align-items: center; gap: 8px; }
-  .icon-btn { width: 36px; height: 36px; border-radius: 50%; border: none; background: var(--bg); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: all 0.2s; }
-  .icon-btn:hover { background: var(--primary-light); }
+/* ── TABS ── */
+.tab-bar{display:flex;background:var(--bg);border-radius:var(--radius-sm);padding:4px;margin-bottom:16px;}
+.tab-btn{flex:1;padding:8px;border:none;background:none;border-radius:8px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;color:var(--text-soft);cursor:pointer;transition:all .2s;}
+.tab-btn.active{background:white;color:var(--primary);box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+.page-tab{display:none;}
+.page-tab.active{display:block;}
 
-  /* ── BOTTOM NAV ── */
-  .bottomnav {
-    position: fixed; bottom: 0; left: 0; right: 0; background: white;
-    display: flex; border-top: 1px solid var(--border);
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.06); z-index: 100; padding-bottom: env(safe-area-inset-bottom);
-  }
-  .bnav-btn {
-    flex: 1; padding: 10px 4px 8px; border: none; background: none; cursor: pointer;
-    display: flex; flex-direction: column; align-items: center; gap: 3px; transition: all 0.2s;
-    font-family: 'Nunito', sans-serif;
-  }
-  .bnav-btn .bnav-icon { font-size: 22px; transition: transform 0.2s; }
-  .bnav-btn .bnav-label { font-size: 10px; font-weight: 700; color: var(--text-soft); }
-  .bnav-btn.active .bnav-label { color: var(--primary); }
-  .bnav-btn.active .bnav-icon { transform: scale(1.15); }
+/* ── CARDS ── */
+.card{background:white;border-radius:var(--radius);padding:16px;margin-bottom:14px;box-shadow:var(--shadow);}
+.card-title{font-size:13px;font-weight:800;color:var(--text-soft);text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px;}
 
-  /* ── PAGE CONTENT ── */
-  .page-content { padding: 16px; padding-bottom: 80px; flex: 1; overflow-y: auto; }
+/* ── WEEKLY TABLE ── */
+.week-table-wrap{overflow-x:auto;border-radius:var(--radius);box-shadow:var(--shadow);background:white;margin-bottom:16px;}
+.week-table{width:100%;border-collapse:collapse;font-size:13px;min-width:480px;}
+.week-table th{background:var(--primary);color:white;padding:10px 8px;text-align:center;font-weight:800;font-size:12px;}
+.week-table th:first-child{width:80px;}
+.week-table td{padding:8px 6px;border:1px solid var(--border);vertical-align:top;min-width:90px;}
+.week-table tr:nth-child(even) td{background:#FAFBFF;}
+.week-table td:first-child{background:var(--bg);font-weight:800;font-size:11px;color:var(--text-soft);text-align:center;border-right:2px solid var(--border);}
+.week-table td.today-col{background:#F0EFFE!important;}
+.week-table th.today-col{background:#4B44E0;}
+.slot-cell{position:relative;min-height:36px;}
+.slot-pill{display:block;padding:4px 8px;border-radius:8px;font-size:11px;font-weight:700;margin:2px 0;line-height:1.4;position:relative;}
+.slot-pill.school{background:#EEF0FF;color:var(--primary);}
+.slot-pill.extra{background:#FFF4E8;color:var(--orange);}
+.slot-pill.mom{background:#FFF0F0;color:var(--red);}
+.slot-pill.empty{color:var(--border);font-size:13px;}
+.add-hw-btn{position:absolute;top:2px;right:2px;width:18px;height:18px;border-radius:50%;background:var(--green);color:white;border:none;font-size:13px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;}
+.slot-cell:hover .add-hw-btn{opacity:1;}
 
-  /* ── CARDS ── */
-  .card { background: white; border-radius: var(--radius); padding: 16px; margin-bottom: 14px; box-shadow: var(--shadow); }
-  .card-title { font-size: 14px; font-weight: 800; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 12px; }
+/* ── TODO LIST ── */
+.todo-item{background:white;border-radius:var(--radius-sm);border:1.5px solid var(--border);padding:14px;margin-bottom:10px;transition:all .2s;}
+.todo-item:hover{box-shadow:var(--shadow);border-color:var(--primary);}
+.todo-header{display:flex;align-items:flex-start;gap:10px;}
+.todo-priority{width:28px;height:28px;border-radius:8px;background:var(--primary-light);color:var(--primary);font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.todo-body{flex:1;min-width:0;}
+.todo-name{font-size:14px;font-weight:700;margin-bottom:4px;}
+.todo-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:6px;}
+.todo-actions{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;}
+.status-badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;}
+.status-todo{background:#F3F4F6;color:var(--text-soft);}
+.status-doing{background:#FFF4E8;color:var(--orange);}
+.status-done{background:var(--green-light);color:#2E7D32;}
+.todo-item.done-item{opacity:.65;background:var(--bg);}
+.todo-item.done-item .todo-name{text-decoration:line-through;}
 
-  /* ── TABS ── */
-  .tab-bar { display: flex; background: var(--bg); border-radius: var(--radius-sm); padding: 4px; margin-bottom: 16px; }
-  .tab-btn { flex: 1; padding: 8px; border: none; background: none; border-radius: 8px; font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 700; color: var(--text-soft); cursor: pointer; transition: all 0.2s; }
-  .tab-btn.active { background: white; color: var(--primary); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+/* ── BADGES ── */
+.badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;}
+.badge-purple{background:var(--primary-light);color:var(--primary);}
+.badge-green{background:var(--green-light);color:#2E7D32;}
+.badge-orange{background:var(--orange-light);color:#E65100;}
+.badge-red{background:var(--red-light);color:#C62828;}
+.badge-gray{background:#F3F4F6;color:var(--text-soft);}
+.hw-tag{font-size:11px;font-weight:600;padding:2px 8px;border-radius:6px;}
+.hw-tag-school{background:#EEF0FF;color:var(--primary);}
+.hw-tag-parent{background:#FFF4E8;color:var(--orange);}
 
-  /* ── PAGE TABS ── */
-  .page-tab { display: none; }
-  .page-tab.active { display: block; }
+/* ── BUTTONS ── */
+.btn{padding:10px 18px;border-radius:var(--radius-sm);border:none;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px;}
+.btn-primary{background:var(--primary);color:white;box-shadow:0 4px 14px rgba(108,99,255,0.25);}
+.btn-primary:hover{background:#5B53EE;transform:translateY(-1px);}
+.btn-secondary{background:var(--bg);color:var(--text);border:1.5px solid var(--border);}
+.btn-secondary:hover{background:var(--primary-light);border-color:var(--primary);color:var(--primary);}
+.btn-green{background:var(--green);color:white;}
+.btn-green:hover{background:#5ab567;}
+.btn-orange{background:var(--orange);color:white;}
+.btn-danger{background:var(--red-light);color:var(--red);}
+.btn-sm{padding:6px 12px;font-size:12px;border-radius:8px;}
+.btn-full{width:100%;justify-content:center;}
 
-  /* ── SECTION HEADER ── */
-  .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-  .section-title { font-size: 17px; font-weight: 800; color: var(--text); }
-  .section-sub { font-size: 13px; color: var(--text-soft); margin-top: 2px; }
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:200;display:none;align-items:flex-end;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:white;border-radius:24px 24px 0 0;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;padding:24px 20px 32px;}
+.modal-handle{width:40px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 18px;}
+.modal-title{font-size:17px;font-weight:800;margin-bottom:16px;}
+.form-group{margin-bottom:12px;}
+.form-label{font-size:12px;font-weight:700;color:var(--text-soft);margin-bottom:5px;display:block;}
+.form-input,.form-select,.form-textarea{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-family:'Nunito',sans-serif;font-size:14px;color:var(--text);background:white;transition:border-color .2s;}
+.form-input:focus,.form-select:focus,.form-textarea:focus{outline:none;border-color:var(--primary);}
+.form-textarea{resize:vertical;min-height:72px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 
-  /* ── BADGE ── */
-  .badge { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; }
-  .badge-purple { background: var(--primary-light); color: var(--primary); }
-  .badge-green { background: var(--green-light); color: #2E7D32; }
-  .badge-orange { background: var(--orange-light); color: #E65100; }
-  .badge-red { background: var(--red-light); color: #C62828; }
-  .badge-blue { background: var(--blue-light); color: #00695C; }
-  .badge-gray { background: #F3F4F6; color: var(--text-soft); }
+/* ── STARS ── */
+.star-jar{background:linear-gradient(135deg,#FFD93D,#FF9A3C);border-radius:var(--radius);padding:16px;color:white;margin-bottom:14px;}
+.star-count{font-family:'Baloo 2',cursive;font-size:40px;font-weight:800;}
+.star-bar{background:rgba(255,255,255,.3);border-radius:8px;height:8px;margin-top:8px;}
+.star-fill{background:white;border-radius:8px;height:8px;transition:width .6s ease;}
+.streak-banner{background:linear-gradient(135deg,var(--secondary),#FF4757);border-radius:var(--radius);padding:14px 16px;color:white;margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.gift-card{background:linear-gradient(135deg,#A78BFA,#7C3AED);border-radius:var(--radius);padding:16px;color:white;margin-bottom:14px;}
 
-  /* ── BUTTONS ── */
-  .btn { padding: 12px 20px; border-radius: var(--radius-sm); border: none; font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; }
-  .btn-primary { background: var(--primary); color: white; box-shadow: 0 4px 14px rgba(108,99,255,0.3); }
-  .btn-primary:hover { background: #5B53EE; transform: translateY(-1px); }
-  .btn-secondary { background: var(--bg); color: var(--text); border: 1.5px solid var(--border); }
-  .btn-secondary:hover { background: var(--primary-light); border-color: var(--primary); color: var(--primary); }
-  .btn-danger { background: var(--red-light); color: var(--red); }
-  .btn-sm { padding: 7px 14px; font-size: 13px; border-radius: 8px; }
-  .btn-full { width: 100%; justify-content: center; }
-  .btn-green { background: var(--green); color: white; }
-  .btn-orange { background: var(--orange); color: white; }
+/* ── AWARENESS ── */
+.awareness-card{border-radius:var(--radius);padding:12px 14px;margin-bottom:10px;}
+.awareness-card.excellent{background:linear-gradient(135deg,#6BCB77,#4CAF50);}
+.awareness-card.good{background:linear-gradient(135deg,#4ECDC4,#26a69a);}
+.awareness-card.needs-work{background:linear-gradient(135deg,#FFD93D,#FFA000);}
+.awareness-card.poor{background:linear-gradient(135deg,#FF6B6B,#e53935);}
 
-  /* ── FAB ── */
-  .fab { position: fixed; bottom: 76px; right: 20px; width: 52px; height: 52px; border-radius: 50%; background: var(--primary); color: white; border: none; font-size: 24px; cursor: pointer; box-shadow: 0 6px 20px rgba(108,99,255,0.35); display: flex; align-items: center; justify-content: center; z-index: 99; transition: all 0.2s; }
-  .fab:hover { transform: scale(1.08); }
+/* ── UPLOAD ── */
+.upload-zone{border:2px dashed var(--primary);background:var(--primary-light);border-radius:var(--radius);padding:20px;text-align:center;margin-bottom:16px;}
 
-  /* ── MODAL ── */
-  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 200; display: none; align-items: flex-end; justify-content: center; }
-  .modal-overlay.open { display: flex; }
-  .modal { background: white; border-radius: 24px 24px 0 0; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; padding: 24px 20px 32px; }
-  .modal-handle { width: 40px; height: 4px; background: var(--border); border-radius: 2px; margin: 0 auto 20px; }
-  .modal-title { font-size: 18px; font-weight: 800; margin-bottom: 20px; }
+/* ── LOADING / EMPTY ── */
+.loading{display:flex;align-items:center;justify-content:center;padding:40px;}
+.spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.empty-state{text-align:center;padding:40px 20px;color:var(--text-soft);}
+.empty-state .empty-icon{font-size:48px;margin-bottom:10px;}
 
-  /* ── FORM ── */
-  .form-group { margin-bottom: 14px; }
-  .form-label { font-size: 13px; font-weight: 700; color: var(--text-soft); margin-bottom: 6px; display: block; }
-  .form-input, .form-select, .form-textarea {
-    width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: var(--radius-sm);
-    font-family: 'Nunito', sans-serif; font-size: 14px; color: var(--text); background: white; transition: border-color 0.2s;
-  }
-  .form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--primary); }
-  .form-textarea { resize: vertical; min-height: 80px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .form-hint { font-size: 12px; color: var(--text-xsoft); margin-top: 4px; }
+/* ── TOAST ── */
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--text);color:white;padding:10px 20px;border-radius:12px;font-size:14px;font-weight:600;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;}
+.toast.show{opacity:1;}
 
-  /* ── HOMEWORK ITEM ── */
-  .hw-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px; background: white; border-radius: var(--radius-sm); border: 1.5px solid var(--border); margin-bottom: 10px; transition: all 0.2s; }
-  .hw-item:hover { border-color: var(--primary); box-shadow: var(--shadow); }
-  .hw-item.done { opacity: 0.6; background: var(--bg); }
-  .hw-item.done .hw-name { text-decoration: line-through; }
-  .hw-check { width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--border); background: white; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; transition: all 0.2s; margin-top: 1px; }
-  .hw-check.checked { background: var(--green); border-color: var(--green); color: white; }
-  .hw-body { flex: 1; min-width: 0; }
-  .hw-name { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-  .hw-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
-  .hw-tag { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 6px; }
-  .hw-tag-school { background: #EEF0FF; color: var(--primary); }
-  .hw-tag-parent { background: #FFF4E8; color: var(--orange); }
-  .hw-deadline { font-size: 12px; color: var(--text-soft); }
-  .hw-deadline.urgent { color: var(--red); font-weight: 700; }
-  .hw-priority { width: 24px; height: 24px; border-radius: 6px; background: var(--primary-light); color: var(--primary); font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; cursor: grab; }
-  .hw-actions { display: flex; gap: 6px; margin-top: 8px; }
+/* ── ALERT ── */
+.alert-banner{background:var(--red-light);border:1.5px solid #FECACA;border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.alert-banner p{font-size:13px;color:#C62828;font-weight:600;}
 
-  /* ── CHILD CARD (dashboard) ── */
-  .child-card { background: white; border-radius: var(--radius); padding: 16px; margin-bottom: 14px; box-shadow: var(--shadow); border-left: 4px solid var(--primary); }
-  .child-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-  .child-avatar-lg { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; background: var(--primary-light); }
-  .child-info h3 { font-size: 16px; font-weight: 800; }
-  .child-info p { font-size: 12px; color: var(--text-soft); }
-  .child-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
-  .child-stat { text-align: center; padding: 10px; border-radius: var(--radius-sm); background: var(--bg); }
-  .child-stat .stat-num { font-size: 22px; font-weight: 900; font-family: 'Baloo 2', cursive; }
-  .child-stat .stat-label { font-size: 11px; color: var(--text-soft); font-weight: 600; }
+/* ── COMMENT BOX ── */
+.comment-box{background:var(--primary-light);border-radius:var(--radius-sm);padding:8px 10px;margin-top:6px;}
+.comment-from{font-size:11px;font-weight:700;color:var(--primary);margin-bottom:2px;}
+.comment-text{font-size:13px;color:var(--text);}
 
-  /* ── SCHEDULE ── */
-  .schedule-day { margin-bottom: 16px; }
-  .schedule-day-header { font-size: 13px; font-weight: 800; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-  .schedule-day-header.today span.day-label { color: var(--primary); }
-  .today-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--primary); display: inline-block; }
-  .subject-slot { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: white; border-radius: var(--radius-sm); border: 1.5px solid var(--border); margin-bottom: 8px; }
-  .subject-slot .slot-time { font-size: 12px; font-weight: 700; color: var(--primary); min-width: 48px; }
-  .subject-slot .slot-subject { font-size: 14px; font-weight: 700; flex: 1; }
-  .subject-slot .slot-type { font-size: 11px; color: var(--text-soft); }
-  .subject-slot .slot-add { font-size: 20px; color: var(--primary); cursor: pointer; opacity: 0.6; transition: opacity 0.2s; }
-  .subject-slot .slot-add:hover { opacity: 1; }
-  .subject-slot.has-hw { border-color: var(--green); background: var(--green-light); }
+/* ── CHILD CARD ── */
+.child-card{background:white;border-radius:var(--radius);padding:16px;margin-bottom:14px;box-shadow:var(--shadow);}
+.child-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px;}
+.child-stat{text-align:center;padding:10px;border-radius:var(--radius-sm);background:var(--bg);}
+.child-stat .stat-num{font-size:22px;font-weight:900;font-family:'Baloo 2',cursive;}
+.child-stat .stat-label{font-size:11px;color:var(--text-soft);font-weight:600;}
+.progress-bar{background:var(--border);border-radius:8px;height:6px;overflow:hidden;margin-top:4px;}
+.progress-fill{background:var(--green);height:6px;border-radius:8px;transition:width .5s ease;}
 
-  /* ── STARS ── */
-  .star-jar { background: linear-gradient(135deg, #FFD93D, #FF9A3C); border-radius: var(--radius); padding: 16px; color: white; margin-bottom: 14px; }
-  .star-jar-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
-  .star-jar-title { font-size: 15px; font-weight: 800; }
-  .star-count { font-family: 'Baloo 2', cursive; font-size: 36px; font-weight: 800; }
-  .star-count span { font-size: 14px; font-weight: 600; opacity: 0.8; }
-  .star-bar { background: rgba(255,255,255,0.3); border-radius: 8px; height: 8px; margin-top: 8px; }
-  .star-fill { background: white; border-radius: 8px; height: 8px; transition: width 0.6s ease; }
-  .star-goal-label { font-size: 12px; opacity: 0.85; margin-top: 6px; }
+/* ── SETTINGS ── */
+.settings-list{background:white;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:14px;}
+.settings-item{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .2s;}
+.settings-item:last-child{border-bottom:none;}
+.settings-item:hover{background:var(--bg);}
+.settings-item .si-icon{font-size:20px;width:32px;text-align:center;}
+.settings-item .si-label{flex:1;font-size:14px;font-weight:600;}
 
-  /* ── STREAK ── */
-  .streak-banner { background: linear-gradient(135deg, var(--secondary), #FF4757); border-radius: var(--radius); padding: 14px 16px; color: white; margin-bottom: 14px; display: flex; align-items: center; gap: 12px; }
-  .streak-fire { font-size: 36px; }
-  .streak-num { font-family: 'Baloo 2', cursive; font-size: 32px; font-weight: 800; line-height: 1; }
-  .streak-label { font-size: 13px; opacity: 0.9; }
-
-  /* ── EMPTY STATE ── */
-  .empty-state { text-align: center; padding: 40px 20px; color: var(--text-soft); }
-  .empty-state .empty-icon { font-size: 48px; margin-bottom: 12px; }
-  .empty-state p { font-size: 14px; }
-
-  /* ── ALERT BANNER ── */
-  .alert-banner { background: var(--red-light); border: 1.5px solid #FECACA; border-radius: var(--radius-sm); padding: 12px 14px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
-  .alert-banner .alert-icon { font-size: 20px; flex-shrink: 0; }
-  .alert-banner p { font-size: 13px; color: #C62828; font-weight: 600; }
-
-  /* ── COMMENT ── */
-  .comment-box { background: var(--primary-light); border-radius: var(--radius-sm); padding: 10px 12px; margin-top: 8px; }
-  .comment-box .comment-from { font-size: 11px; font-weight: 700; color: var(--primary); margin-bottom: 3px; }
-  .comment-box .comment-text { font-size: 13px; color: var(--text); }
-
-  /* ── APPROVAL ITEM ── */
-  .approval-item { background: var(--orange-light); border: 1.5px solid #FED7AA; border-radius: var(--radius-sm); padding: 12px 14px; margin-bottom: 10px; }
-  .approval-item .appr-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
-  .approval-item .appr-actions { display: flex; gap: 8px; margin-top: 10px; }
-
-  /* ── SELF RATING ── */
-  .self-rate-modal .rate-opts { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin: 16px 0; }
-  .rate-opt { padding: 14px 8px; border-radius: var(--radius-sm); border: 2px solid var(--border); text-align: center; cursor: pointer; transition: all 0.2s; background: white; font-family: 'Nunito', sans-serif; }
-  .rate-opt .rate-emoji { font-size: 28px; display: block; margin-bottom: 4px; }
-  .rate-opt .rate-label { font-size: 13px; font-weight: 700; color: var(--text); }
-  .rate-opt:hover, .rate-opt.selected { border-color: var(--primary); background: var(--primary-light); }
-
-  /* ── PRIORITY DRAG ── */
-  .priority-list .hw-item { cursor: grab; }
-  .priority-list .hw-item.dragging { opacity: 0.4; }
-
-  /* ── GIFT SECTION ── */
-  .gift-card { background: linear-gradient(135deg, #A78BFA, #7C3AED); border-radius: var(--radius); padding: 16px; color: white; margin-bottom: 14px; }
-  .gift-card h3 { font-size: 15px; font-weight: 800; margin-bottom: 8px; }
-  .gift-item { background: rgba(255,255,255,0.15); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
-  .gift-item .gift-icon { font-size: 24px; }
-  .gift-item .gift-name { font-size: 14px; font-weight: 700; }
-  .gift-item .gift-req { font-size: 12px; opacity: 0.8; }
-
-  /* ── LOADING ── */
-  .loading { display: flex; align-items: center; justify-content: center; padding: 40px; }
-  .spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--primary); border-radius: 50%; animation: spin 0.8s linear infinite; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  /* ── TOAST ── */
-  .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: var(--text); color: white; padding: 12px 20px; border-radius: 12px; font-size: 14px; font-weight: 600; z-index: 999; opacity: 0; transition: opacity 0.3s; pointer-events: none; white-space: nowrap; }
-  .toast.show { opacity: 1; }
-
-  /* ── CHECKLIST OVERVIEW ── */
-  .checklist-overview { }
-  .checklist-child-section { margin-bottom: 20px; }
-  .checklist-child-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px solid var(--border); }
-
-  /* ── PROGRESS BAR ── */
-  .progress-bar { background: var(--border); border-radius: 8px; height: 6px; overflow: hidden; }
-  .progress-fill { background: var(--green); height: 6px; border-radius: 8px; transition: width 0.5s ease; }
-
-  /* ── HISTORY ── */
-  .history-week { margin-bottom: 16px; }
-  .history-week-label { font-size: 12px; font-weight: 700; color: var(--text-soft); text-transform: uppercase; margin-bottom: 8px; }
-  .history-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: white; border-radius: var(--radius-sm); margin-bottom: 6px; box-shadow: var(--shadow); }
-  .history-item .hist-icon { font-size: 18px; }
-  .history-item .hist-body { flex: 1; }
-  .history-item .hist-name { font-size: 13px; font-weight: 700; }
-  .history-item .hist-meta { font-size: 12px; color: var(--text-soft); }
-  .history-item .hist-badge { font-size: 18px; }
-
-  /* ── SETTINGS / PROFILE ── */
-  .profile-header { text-align: center; padding: 24px 0 16px; }
-  .profile-avatar { font-size: 64px; margin-bottom: 8px; }
-  .profile-name { font-size: 22px; font-weight: 900; font-family: 'Baloo 2', cursive; }
-  .profile-role { font-size: 14px; color: var(--text-soft); }
-  .settings-list { background: white; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); margin-bottom: 14px; }
-  .settings-item { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.2s; }
-  .settings-item:last-child { border-bottom: none; }
-  .settings-item:hover { background: var(--bg); }
-  .settings-item .si-icon { font-size: 20px; width: 32px; text-align: center; }
-  .settings-item .si-label { flex: 1; font-size: 14px; font-weight: 600; }
-  .settings-item .si-arrow { color: var(--text-xsoft); font-size: 16px; }
-
-  /* ── AWARENESS SCORE ── */
-  .awareness-card { border-radius: var(--radius); padding: 16px; margin-bottom: 14px; }
-  .awareness-card.excellent { background: linear-gradient(135deg, #6BCB77, #4CAF50); }
-  .awareness-card.good { background: linear-gradient(135deg, #4ECDC4, #26a69a); }
-  .awareness-card.needs-work { background: linear-gradient(135deg, #FFD93D, #FFA000); }
-  .awareness-card.poor { background: linear-gradient(135deg, #FF6B6B, #e53935); }
-  .awareness-card h3 { color: white; font-size: 15px; font-weight: 800; margin-bottom: 4px; }
-  .awareness-card p { color: rgba(255,255,255,0.9); font-size: 13px; }
-  .awareness-score-num { font-family: 'Baloo 2', cursive; font-size: 42px; font-weight: 900; color: white; }
-
-  /* ── TEPPI SPECIAL ── */
-  .teppi-mode .hw-item { border-radius: 20px; padding: 16px; }
-  .teppi-mode .hw-name { font-size: 18px; }
-  .teppi-mode .hw-check { width: 36px; height: 36px; font-size: 20px; }
-
-  /* Scrollbar */
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+/* ── MOBILE SIDEBAR ── */
+@media(max-width:768px){
+  .sidebar{transform:translateX(-100%);transition:transform .3s;}
+  .sidebar.open{transform:translateX(0);}
+  .main-content{margin-left:0;}
+  .mobile-header{display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:40;}
+  .hamburger{font-size:22px;cursor:pointer;border:none;background:none;}
+  .overlay-mask{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:49;display:none;}
+  .overlay-mask.open{display:block;}
+  .page-header{display:none;}
+  .page-body{padding:16px;}
+}
+@media(min-width:769px){
+  .mobile-header{display:none;}
+}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
 </style>
 </head>
 <body>
-
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
+<div class="overlay-mask" id="overlay-mask" onclick="closeSidebar()"></div>
 
-<!-- ════════════════════════════════════════
-     SCREEN: LOGIN
-════════════════════════════════════════ -->
+<!-- ══════ LOGIN ══════ -->
 <div class="screen active" id="screen-login">
   <div class="login-header">
     <div class="app-icon">📚</div>
@@ -343,218 +236,198 @@
   </div>
   <div class="login-card">
     <h2>Bạn là ai? 👋</h2>
-    <div class="role-section">
-      <div class="role-label">Bố Mẹ</div>
-      <div class="role-grid">
-        <button class="role-btn admin" onclick="login('me-duong')">
-          <span class="avatar">👩</span>
-          <span class="name">Mẹ Dương</span>
-          <span class="role-tag">Admin</span>
-        </button>
-        <button class="role-btn admin" onclick="login('bo-hieu')">
-          <span class="avatar">👨</span>
-          <span class="name">Bố Hiếu</span>
-          <span class="role-tag">Admin</span>
-        </button>
-      </div>
+    <div class="role-label">Bố Mẹ</div>
+    <div class="role-grid">
+      <button class="role-btn" onclick="login('me-duong')"><span class="av">👩</span><span class="nm">Mẹ Dương</span><span class="rt">Admin</span></button>
+      <button class="role-btn" onclick="login('bo-hieu')"><span class="av">👨</span><span class="nm">Bố Hiếu</span><span class="rt">Admin</span></button>
     </div>
-    <div class="role-section">
-      <div class="role-label">Các Con</div>
-      <div class="role-grid">
-        <button class="role-btn" onclick="login('shin')">
-          <span class="avatar">🧒</span>
-          <span class="name">Shin</span>
-          <span class="role-tag">10 tuổi</span>
-        </button>
-        <button class="role-btn" onclick="login('teppi')">
-          <span class="avatar">👧</span>
-          <span class="name">Teppi</span>
-          <span class="role-tag">5 tuổi</span>
-        </button>
-      </div>
+    <div class="role-label">Các Con</div>
+    <div class="role-grid">
+      <button class="role-btn" onclick="login('shin')"><span class="av">🧒</span><span class="nm">Shin</span><span class="rt">10 tuổi</span></button>
+      <button class="role-btn" onclick="login('teppi')"><span class="av">👧</span><span class="nm">Teppi</span><span class="rt">5 tuổi</span></button>
     </div>
   </div>
 </div>
 
-<!-- ════════════════════════════════════════
-     SCREEN: PARENT (Bố/Mẹ)
-════════════════════════════════════════ -->
+<!-- ══════ PARENT APP ══════ -->
 <div class="screen" id="screen-parent">
-  <!-- Top Nav -->
-  <div class="topnav">
-    <div class="topnav-left">
-      <div class="topnav-avatar" id="parent-nav-avatar">👩</div>
-      <div>
-        <div class="topnav-name" id="parent-nav-name">Mẹ Dương</div>
-        <div class="topnav-role">Admin</div>
-      </div>
-    </div>
-    <div class="topnav-right">
-      <button class="icon-btn" onclick="logout()" title="Đăng xuất">🚪</button>
-    </div>
-  </div>
-
-  <!-- Content -->
-  <div class="page-content" id="parent-content">
-    <!-- Tab Bar -->
-    <div class="tab-bar">
-      <button class="tab-btn active" onclick="switchParentTab('dashboard')">📊 Dashboard</button>
-      <button class="tab-btn" onclick="switchParentTab('checklist')">✅ Checklist</button>
-      <button class="tab-btn" onclick="switchParentTab('schedule')">📅 Lịch học</button>
-      <button class="tab-btn" onclick="switchParentTab('history')">📈 Lịch sử</button>
-    </div>
-
-    <!-- DASHBOARD TAB -->
-    <div class="page-tab active" id="ptab-dashboard">
-      <div id="pending-approvals-section"></div>
-      <div id="parent-children-cards"></div>
-    </div>
-
-    <!-- CHECKLIST TAB -->
-    <div class="page-tab" id="ptab-checklist">
-      <div class="section-header">
-        <div>
-          <div class="section-title">Checklist hôm nay</div>
-          <div class="section-sub" id="checklist-date-label"></div>
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <div class="sidebar" id="parent-sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-user">
+          <div class="sidebar-avatar" id="p-avatar">👩</div>
+          <div><div class="sidebar-name" id="p-name">Mẹ Dương</div><div class="sidebar-role">Admin</div></div>
         </div>
       </div>
-      <div id="parent-checklist-content"></div>
+      <div class="sidebar-nav">
+        <button class="nav-item active" onclick="showParentTab('dashboard',this)"><span class="nav-icon">📊</span><span class="nav-label">Dashboard</span></button>
+        <button class="nav-item" onclick="showParentTab('schedule',this)"><span class="nav-icon">📅</span><span class="nav-label">Thời khoá biểu</span></button>
+        <button class="nav-item" onclick="showParentTab('todo',this)"><span class="nav-icon">✅</span><span class="nav-label">To-do List</span></button>
+        <button class="nav-item" onclick="showParentTab('evaluate',this)"><span class="nav-icon">⭐</span><span class="nav-label">Đánh giá</span></button>
+        <button class="nav-item" onclick="showParentTab('settings',this)"><span class="nav-icon">⚙️</span><span class="nav-label">Cài đặt</span></button>
+      </div>
+      <div class="sidebar-footer">
+        <button class="logout-btn" onclick="logout()">🚪 Đăng xuất</button>
+      </div>
     </div>
-
-    <!-- SCHEDULE TAB -->
-    <div class="page-tab" id="ptab-schedule">
-      <div class="section-header">
-        <div class="section-title">Thời khoá biểu</div>
+    <!-- Main -->
+    <div class="main-content">
+      <div class="mobile-header">
+        <button class="hamburger" onclick="openSidebar()">☰</button>
+        <span style="font-weight:800;font-size:16px" id="p-mobile-title">Dashboard</span>
       </div>
-      <div class="tab-bar">
-        <button class="tab-btn active" onclick="switchScheduleChild('shin')">🧒 Shin</button>
-        <button class="tab-btn" onclick="switchScheduleChild('teppi')">👧 Teppi</button>
+      <div id="parent-page-area" style="flex:1;overflow-y:auto;">
+        <!-- Dynamic content here -->
       </div>
-      <div id="parent-schedule-content"></div>
-      <button class="btn btn-secondary btn-full" onclick="openScheduleModal()" style="margin-top:8px">
-        ⚙️ Chỉnh sửa thời khoá biểu
-      </button>
-    </div>
-
-    <!-- HISTORY TAB -->
-    <div class="page-tab" id="ptab-history">
-      <div class="section-header">
-        <div class="section-title">Lịch sử hoàn thành</div>
-      </div>
-      <div class="tab-bar">
-        <button class="tab-btn active" onclick="switchHistoryChild('all')">Tất cả</button>
-        <button class="tab-btn" onclick="switchHistoryChild('shin')">🧒 Shin</button>
-        <button class="tab-btn" onclick="switchHistoryChild('teppi')">👧 Teppi</button>
-      </div>
-      <div id="parent-history-content"></div>
     </div>
   </div>
-
-  <!-- FAB: Giao bài -->
-  <button class="fab" onclick="openAssignModal()" title="Giao bài tập">＋</button>
 </div>
 
-<!-- ════════════════════════════════════════
-     SCREEN: CHILD — SHIN
-════════════════════════════════════════ -->
+<!-- ══════ CHILD APP (Shin) ══════ -->
 <div class="screen" id="screen-shin">
-  <div class="topnav">
-    <div class="topnav-left">
-      <div class="topnav-avatar">🧒</div>
-      <div>
-        <div class="topnav-name">Shin</div>
-        <div class="topnav-role">Học sinh • 10 tuổi</div>
+  <div class="app-layout">
+    <div class="sidebar" id="shin-sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-user">
+          <div class="sidebar-avatar">🧒</div>
+          <div><div class="sidebar-name">Shin</div><div class="sidebar-role">10 tuổi</div></div>
+        </div>
+      </div>
+      <div class="sidebar-nav">
+        <button class="nav-item active" onclick="showChildTab('shin','schedule',this)"><span class="nav-icon">📅</span><span class="nav-label">Thời khoá biểu</span></button>
+        <button class="nav-item" onclick="showChildTab('shin','todo',this)"><span class="nav-icon">✅</span><span class="nav-label">To-do List</span></button>
+        <button class="nav-item" onclick="showChildTab('shin','evaluate',this)"><span class="nav-icon">⭐</span><span class="nav-label">Đánh giá</span></button>
+        <button class="nav-item" onclick="showChildTab('shin','settings',this)"><span class="nav-icon">⚙️</span><span class="nav-label">Cài đặt</span></button>
+      </div>
+      <div class="sidebar-footer">
+        <button class="logout-btn" onclick="logout()">🚪 Đăng xuất</button>
       </div>
     </div>
-    <div class="topnav-right">
-      <button class="icon-btn" onclick="logout()">🚪</button>
-    </div>
-  </div>
-  <div class="page-content">
-    <div class="tab-bar">
-      <button class="tab-btn active" onclick="switchChildTab('shin','today')">📋 Hôm nay</button>
-      <button class="tab-btn" onclick="switchChildTab('shin','schedule')">📅 Lịch học</button>
-      <button class="tab-btn" onclick="switchChildTab('shin','stars')">⭐ Sao</button>
-    </div>
-    <div class="page-tab active" id="shin-tab-today">
-      <div id="shin-alerts"></div>
-      <div id="shin-today-content"></div>
-    </div>
-    <div class="page-tab" id="shin-tab-schedule">
-      <div id="shin-schedule-content"></div>
-    </div>
-    <div class="page-tab" id="shin-tab-stars">
-      <div id="shin-stars-content"></div>
+    <div class="main-content">
+      <div class="mobile-header">
+        <button class="hamburger" onclick="openSidebar('shin-sidebar')">☰</button>
+        <span style="font-weight:800;font-size:16px" id="shin-mobile-title">Thời khoá biểu</span>
+      </div>
+      <div id="shin-page-area" style="flex:1;overflow-y:auto;"></div>
     </div>
   </div>
 </div>
 
-<!-- ════════════════════════════════════════
-     SCREEN: CHILD — TEPPI
-════════════════════════════════════════ -->
+<!-- ══════ CHILD APP (Teppi) ══════ -->
 <div class="screen" id="screen-teppi">
-  <div class="topnav" style="background: linear-gradient(135deg,#FF6B6B,#FF9A3C); border-bottom: none;">
-    <div class="topnav-left">
-      <div class="topnav-avatar" style="background:rgba(255,255,255,0.25)">👧</div>
-      <div>
-        <div class="topnav-name" style="color:white">Teppi</div>
-        <div class="topnav-role" style="color:rgba(255,255,255,0.8)">5 tuổi 🌟</div>
+  <div class="app-layout">
+    <div class="sidebar" id="teppi-sidebar" style="background:linear-gradient(180deg,#FF6B6B,#FF9A3C);border-right:none;">
+      <div class="sidebar-header" style="border-bottom:1px solid rgba(255,255,255,.2)">
+        <div class="sidebar-user">
+          <div class="sidebar-avatar" style="background:rgba(255,255,255,.25)">👧</div>
+          <div><div class="sidebar-name" style="color:white">Teppi</div><div class="sidebar-role" style="color:rgba(255,255,255,.8)">5 tuổi 🌟</div></div>
+        </div>
+      </div>
+      <div class="sidebar-nav">
+        <button class="nav-item active" onclick="showChildTab('teppi','todo',this)" style="--nav-active-bg:rgba(255,255,255,.2)"><span class="nav-icon">📋</span><span class="nav-label" style="color:white">Bài tập</span></button>
+        <button class="nav-item" onclick="showChildTab('teppi','evaluate',this)"><span class="nav-icon">⭐</span><span class="nav-label" style="color:rgba(255,255,255,.8)">Sao của con</span></button>
+      </div>
+      <div class="sidebar-footer" style="border-top:1px solid rgba(255,255,255,.2)">
+        <button class="logout-btn" onclick="logout()" style="color:rgba(255,255,255,.8)">🚪 Đăng xuất</button>
       </div>
     </div>
-    <div class="topnav-right">
-      <button class="icon-btn" onclick="logout()" style="background:rgba(255,255,255,0.2);color:white">🚪</button>
-    </div>
-  </div>
-  <div class="page-content teppi-mode">
-    <div class="tab-bar">
-      <button class="tab-btn active" onclick="switchChildTab('teppi','today')">📋 Bài tập</button>
-      <button class="tab-btn" onclick="switchChildTab('teppi','stars')">⭐ Sao của con</button>
-    </div>
-    <div class="page-tab active" id="teppi-tab-today">
-      <div id="teppi-alerts"></div>
-      <div id="teppi-today-content"></div>
-    </div>
-    <div class="page-tab" id="teppi-tab-stars">
-      <div id="teppi-stars-content"></div>
+    <div class="main-content">
+      <div class="mobile-header" style="background:linear-gradient(135deg,#FF6B6B,#FF9A3C);border:none">
+        <button class="hamburger" onclick="openSidebar('teppi-sidebar')" style="color:white">☰</button>
+        <span style="font-weight:800;font-size:16px;color:white" id="teppi-mobile-title">Bài tập</span>
+      </div>
+      <div id="teppi-page-area" style="flex:1;overflow-y:auto;"></div>
     </div>
   </div>
 </div>
 
-<!-- ════════════════════════════════════════
-     MODALS
-════════════════════════════════════════ -->
+<!-- ══════ MODALS ══════ -->
 
-<!-- Modal: Giao bài (Admin) -->
+<!-- Modal: Thêm BTVN (con tự nhập) -->
+<div class="modal-overlay" id="modal-hw-entry">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="hw-entry-title">📖 Thêm BTVN</div>
+    <div class="form-group">
+      <label class="form-label">Nội dung buổi học hôm nay</label>
+      <textarea class="form-textarea" id="hw-lesson" placeholder="Con học gì hôm nay? VD: Phân số, từ vựng Unit 6..."></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Tên BTVN *</label>
+      <input class="form-input" id="hw-name" placeholder="VD: Làm bài tập trang 45-46">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Tên Sách/Tài liệu</label>
+        <input class="form-input" id="hw-book" placeholder="VD: SGK Toán 4">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Số trang</label>
+        <input class="form-input" id="hw-page" placeholder="VD: 45-46">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Deadline (ngày)</label>
+        <input class="form-input" id="hw-deadline-date" type="date">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Giờ</label>
+        <input class="form-input" id="hw-deadline-time" type="time" value="21:00">
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:4px">
+      <button class="btn btn-secondary" style="flex:1" onclick="closeModal('modal-hw-entry')">Huỷ</button>
+      <button class="btn btn-primary" style="flex:2" onclick="submitHwEntry()">💾 Lưu BTVN</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Giao bài (admin) -->
 <div class="modal-overlay" id="modal-assign">
   <div class="modal">
     <div class="modal-handle"></div>
     <div class="modal-title">📝 Giao bài tập mới</div>
     <div class="form-group">
       <label class="form-label">Giao cho *</label>
-      <select class="form-select" id="assign-child">
-        <option value="shin">🧒 Shin</option>
-        <option value="teppi">👧 Teppi</option>
-      </select>
+      <select class="form-select" id="assign-child"><option value="shin">🧒 Shin</option><option value="teppi">👧 Teppi</option></select>
     </div>
     <div class="form-group">
-      <label class="form-label">Môn học *</label>
-      <input class="form-input" id="assign-subject" placeholder="VD: Toán, Tiếng Anh..." />
+      <label class="form-label">Môn học</label>
+      <input class="form-input" id="assign-subject" placeholder="VD: Toán, Tiếng Anh...">
     </div>
     <div class="form-group">
-      <label class="form-label">Tên bài tập *</label>
-      <input class="form-input" id="assign-name" placeholder="VD: Làm bài tập đọc unit 5" />
+      <label class="form-label">Nội dung buổi học</label>
+      <textarea class="form-textarea" id="assign-lesson" placeholder="Ghi chú nội dung học..."></textarea>
     </div>
     <div class="form-group">
-      <label class="form-label">Link tài liệu (Google Drive, YouTube...)</label>
-      <input class="form-input" id="assign-link" placeholder="https://..." type="url" />
+      <label class="form-label">Tên BTVN *</label>
+      <input class="form-input" id="assign-name" placeholder="VD: Làm bài tập đọc Unit 5">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Tên Sách/Tài liệu</label>
+        <input class="form-input" id="assign-book" placeholder="">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Số trang</label>
+        <input class="form-input" id="assign-page" placeholder="">
+      </div>
     </div>
     <div class="form-group">
-      <label class="form-label">Ghi chú thêm</label>
-      <textarea class="form-textarea" id="assign-note" placeholder="Hướng dẫn, lưu ý..."></textarea>
+      <label class="form-label">Link tài liệu (Google Drive...)</label>
+      <input class="form-input" id="assign-link" type="url" placeholder="https://...">
     </div>
-    <div class="form-group">
-      <label class="form-label">Deadline *</label>
-      <input class="form-input" id="assign-deadline" type="date" />
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Deadline (ngày)</label>
+        <input class="form-input" id="assign-deadline-date" type="date">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Giờ</label>
+        <input class="form-input" id="assign-deadline-time" type="time" value="21:00">
+      </div>
     </div>
     <div style="display:flex;gap:10px;margin-top:4px">
       <button class="btn btn-secondary" style="flex:1" onclick="closeModal('modal-assign')">Huỷ</button>
@@ -563,121 +436,76 @@
   </div>
 </div>
 
-<!-- Modal: Con nhập BTVN -->
-<div class="modal-overlay" id="modal-hw-entry">
+<!-- Modal: Tự đánh giá -->
+<div class="modal-overlay" id="modal-self-rate">
   <div class="modal">
     <div class="modal-handle"></div>
-    <div class="modal-title" id="hw-entry-title">📖 Nhập bài tập về nhà</div>
-    <div class="form-group">
-      <label class="form-label">Nội dung buổi học hôm nay</label>
-      <textarea class="form-textarea" id="hw-lesson-content" placeholder="Con đã học gì hôm nay? VD: Học về phân số, nghe từ vựng unit 6..."></textarea>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Tên bài tập về nhà *</label>
-      <input class="form-input" id="hw-entry-name" placeholder="VD: Làm BT trang 45-46" />
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">Tên sách</label>
-        <input class="form-input" id="hw-entry-book" placeholder="VD: SGK Toán 4" />
+    <div class="modal-title">🎉 Hoàn thành rồi!</div>
+    <p style="color:var(--text-soft);font-size:14px;margin-bottom:14px">Con thấy bài này thế nào?</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px">
+      <div class="rate-opt" onclick="selectRate('easy',this)" style="padding:14px 8px;border-radius:12px;border:2px solid var(--border);text-align:center;cursor:pointer;transition:all .2s;background:white;">
+        <div style="font-size:28px;margin-bottom:4px">😊</div><div style="font-size:13px;font-weight:700">Dễ</div>
       </div>
-      <div class="form-group">
-        <label class="form-label">Số trang</label>
-        <input class="form-input" id="hw-entry-page" placeholder="VD: 45-46" />
+      <div class="rate-opt" onclick="selectRate('medium',this)" style="padding:14px 8px;border-radius:12px;border:2px solid var(--border);text-align:center;cursor:pointer;transition:all .2s;background:white;">
+        <div style="font-size:28px;margin-bottom:4px">🤔</div><div style="font-size:13px;font-weight:700">Bình thường</div>
       </div>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Deadline</label>
-      <input class="form-input" id="hw-entry-deadline" type="date" />
-      <div class="form-hint" id="hw-entry-deadline-hint">Gợi ý: buổi học tiếp theo của môn này</div>
-    </div>
-    <div style="display:flex;gap:10px;margin-top:4px">
-      <button class="btn btn-secondary" style="flex:1" onclick="closeModal('modal-hw-entry')">Huỷ</button>
-      <button class="btn btn-primary" style="flex:2" onclick="submitHwEntry()">📥 Lưu bài tập</button>
-    </div>
-  </div>
-</div>
-
-<!-- Modal: Tự đánh giá (sau khi done) -->
-<div class="modal-overlay self-rate-modal" id="modal-self-rate">
-  <div class="modal">
-    <div class="modal-handle"></div>
-    <div class="modal-title">🎉 Làm xong rồi!</div>
-    <p style="color:var(--text-soft);font-size:14px">Con thấy bài này thế nào?</p>
-    <div class="rate-opts">
-      <div class="rate-opt" onclick="selectRate('easy')">
-        <span class="rate-emoji">😊</span>
-        <span class="rate-label">Dễ</span>
-      </div>
-      <div class="rate-opt" onclick="selectRate('medium')">
-        <span class="rate-emoji">🤔</span>
-        <span class="rate-label">Bình thường</span>
-      </div>
-      <div class="rate-opt" onclick="selectRate('hard')">
-        <span class="rate-emoji">😓</span>
-        <span class="rate-label">Khó</span>
+      <div class="rate-opt" onclick="selectRate('hard',this)" style="padding:14px 8px;border-radius:12px;border:2px solid var(--border);text-align:center;cursor:pointer;transition:all .2s;background:white;">
+        <div style="font-size:28px;margin-bottom:4px">😓</div><div style="font-size:13px;font-weight:700">Khó</div>
       </div>
     </div>
     <div class="form-group">
       <label class="form-label">Con có cần bố mẹ giúp không?</label>
       <select class="form-select" id="rate-need-help">
         <option value="no">Không, con tự làm được 💪</option>
-        <option value="yes">Có, con cần bố mẹ giải thích 🙋</option>
+        <option value="yes">Có, con cần giải thích thêm 🙋</option>
       </select>
     </div>
     <button class="btn btn-primary btn-full" onclick="submitSelfRate()">✨ Xong!</button>
   </div>
 </div>
 
-<!-- Modal: Bố mẹ comment/khen -->
+<!-- Modal: Comment -->
 <div class="modal-overlay" id="modal-comment">
   <div class="modal">
     <div class="modal-handle"></div>
     <div class="modal-title">💬 Nhận xét bài tập</div>
-    <p style="color:var(--text-soft);font-size:13px;margin-bottom:12px" id="comment-hw-name"></p>
+    <p style="color:var(--text-soft);font-size:13px;margin-bottom:12px" id="comment-hw-label"></p>
     <div class="form-group">
       <label class="form-label">Nhận xét</label>
-      <textarea class="form-textarea" id="comment-text" placeholder="Khen ngợi, nhắc nhở, hướng dẫn thêm..."></textarea>
+      <textarea class="form-textarea" id="comment-text" placeholder="Khen ngợi, nhắc nhở..."></textarea>
     </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
-      <button class="btn btn-sm btn-secondary" onclick="quickComment('Giỏi lắm! ⭐')">Giỏi lắm! ⭐</button>
-      <button class="btn btn-sm btn-secondary" onclick="quickComment('Con cố gắng hơn nhé 💪')">Cố gắng hơn 💪</button>
-      <button class="btn btn-sm btn-secondary" onclick="quickComment('Làm lại bài này nhé 🔄')">Làm lại 🔄</button>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">
+      <button class="btn btn-sm btn-secondary" onclick="qComment('Giỏi lắm! ⭐')">Giỏi lắm! ⭐</button>
+      <button class="btn btn-sm btn-secondary" onclick="qComment('Cố gắng hơn nhé 💪')">Cố gắng hơn 💪</button>
+      <button class="btn btn-sm btn-secondary" onclick="qComment('Làm lại bài này nhé 🔄')">Làm lại 🔄</button>
     </div>
     <div style="display:flex;gap:10px">
       <button class="btn btn-secondary" style="flex:1" onclick="closeModal('modal-comment')">Huỷ</button>
-      <button class="btn btn-primary" style="flex:2" onclick="submitComment()">Gửi nhận xét</button>
+      <button class="btn btn-primary" style="flex:2" onclick="submitComment()">Gửi</button>
     </div>
   </div>
 </div>
 
-<!-- Modal: Schedule Editor -->
+<!-- Modal: Schedule edit -->
 <div class="modal-overlay" id="modal-schedule">
   <div class="modal">
     <div class="modal-handle"></div>
-    <div class="modal-title">📅 Chỉnh sửa thời khoá biểu</div>
-    <div class="form-group">
-      <label class="form-label">Con</label>
-      <select class="form-select" id="sched-child">
-        <option value="shin">🧒 Shin</option>
-        <option value="teppi">👧 Teppi</option>
-      </select>
+    <div class="modal-title">➕ Thêm môn học</div>
+    <div class="form-group"><label class="form-label">Con</label>
+      <select class="form-select" id="sched-child"><option value="shin">Shin</option><option value="teppi">Teppi</option></select>
     </div>
-    <div class="form-group">
-      <label class="form-label">Môn học *</label>
-      <input class="form-input" id="sched-subject" placeholder="VD: Toán, Tiếng Anh, Đàn..." />
+    <div class="form-group"><label class="form-label">Tên môn *</label>
+      <input class="form-input" id="sched-subject" placeholder="VD: Toán, ILA, Piano...">
     </div>
-    <div class="form-group">
-      <label class="form-label">Loại</label>
+    <div class="form-group"><label class="form-label">Loại</label>
       <select class="form-select" id="sched-type">
         <option value="school">📚 Học trên lớp</option>
         <option value="extra">🎯 Học thêm</option>
-        <option value="activity">🎨 Hoạt động ngoại khoá</option>
+        <option value="mom">👩 Bài mẹ giao</option>
       </select>
     </div>
-    <div class="form-group">
-      <label class="form-label">Ngày trong tuần</label>
-      <div style="display:flex;gap:6px;flex-wrap:wrap" id="sched-days">
+    <div class="form-group"><label class="form-label">Ngày trong tuần</label>
+      <div style="display:flex;gap:8px;flex-wrap:wrap" id="sched-days">
         <label style="display:flex;align-items:center;gap:4px;font-size:13px;cursor:pointer"><input type="checkbox" value="2"> T2</label>
         <label style="display:flex;align-items:center;gap:4px;font-size:13px;cursor:pointer"><input type="checkbox" value="3"> T3</label>
         <label style="display:flex;align-items:center;gap:4px;font-size:13px;cursor:pointer"><input type="checkbox" value="4"> T4</label>
@@ -688,14 +516,8 @@
       </div>
     </div>
     <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">Giờ bắt đầu</label>
-        <input class="form-input" id="sched-time-start" type="time" />
-      </div>
-      <div class="form-group">
-        <label class="form-label">Giờ kết thúc</label>
-        <input class="form-input" id="sched-time-end" type="time" />
-      </div>
+      <div class="form-group"><label class="form-label">Giờ bắt đầu</label><input class="form-input" id="sched-start" type="time"></div>
+      <div class="form-group"><label class="form-label">Giờ kết thúc</label><input class="form-input" id="sched-end" type="time"></div>
     </div>
     <div style="display:flex;gap:10px">
       <button class="btn btn-secondary" style="flex:1" onclick="closeModal('modal-schedule')">Huỷ</button>
@@ -704,1015 +526,906 @@
   </div>
 </div>
 
-<!-- Modal: Gift Manager -->
-<div class="modal-overlay" id="modal-gifts">
+<!-- Modal: Priority -->
+<div class="modal-overlay" id="modal-priority">
   <div class="modal">
     <div class="modal-handle"></div>
-    <div class="modal-title">🎁 Quản lý phần thưởng</div>
-    <div id="gifts-list" style="margin-bottom:16px"></div>
-    <div style="border-top:1px solid var(--border);padding-top:16px">
-      <div class="form-group">
-        <label class="form-label">Tên phần thưởng</label>
-        <input class="form-input" id="gift-name-input" placeholder="VD: Xem phim cuối tuần 🎬" />
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Số sao cần</label>
-          <input class="form-input" id="gift-stars-input" type="number" placeholder="15" />
-        </div>
-        <div class="form-group">
-          <label class="form-label">Dành cho</label>
-          <select class="form-select" id="gift-child-input">
-            <option value="shin">Shin</option>
-            <option value="teppi">Teppi</option>
-            <option value="all">Cả hai</option>
-          </select>
-        </div>
-      </div>
-      <button class="btn btn-primary btn-full" onclick="addGift()">➕ Thêm phần thưởng</button>
+    <div class="modal-title">📋 Sắp xếp thứ tự ưu tiên</div>
+    <p style="color:var(--text-soft);font-size:13px;margin-bottom:14px">Chọn thứ tự bài nào làm trước</p>
+    <div id="priority-items"></div>
+    <div style="display:flex;gap:10px;margin-top:12px">
+      <button class="btn btn-secondary" style="flex:1" onclick="closeModal('modal-priority')">Huỷ</button>
+      <button class="btn btn-primary" style="flex:2" onclick="savePriority()">💾 Lưu thứ tự</button>
     </div>
   </div>
 </div>
 
-<!-- ════════ APP LOGIC ════════ -->
+<!-- SheetJS -->
+<script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+
 <script>
+// ══════════════════════════════════════
+// FIRESTORE REST API
+// ══════════════════════════════════════
+const PROJECT_ID="homework-app-86b16";
+const API_KEY="AIzaSyCmTLrHWLd3CsIgCHEp6MBqnl8J-JOjdv4";
+const BASE=`https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
 
-// ── Firestore REST API ──
-const PROJECT_ID = "homework-app-86b16";
-const API_KEY    = "AIzaSyCmTLrHWLd3CsIgCHEp6MBqnl8J-JOjdv4";
-const BASE_URL   = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
-
-// Convert JS value → Firestore field value
-function toFV(val) {
-  if (val === null || val === undefined) return { nullValue: null };
-  if (typeof val === 'boolean') return { booleanValue: val };
-  if (typeof val === 'number' && Number.isInteger(val)) return { integerValue: String(val) };
-  if (typeof val === 'number') return { doubleValue: val };
-  if (typeof val === 'string') return { stringValue: val };
-  if (Array.isArray(val)) return { arrayValue: { values: val.map(toFV) } };
-  if (val && typeof val === 'object') return { mapValue: { fields: objToFields(val) } };
-  return { stringValue: String(val) };
+function toFV(v){
+  if(v===null||v===undefined)return{nullValue:null};
+  if(typeof v==='boolean')return{booleanValue:v};
+  if(typeof v==='number'&&Number.isInteger(v))return{integerValue:String(v)};
+  if(typeof v==='number')return{doubleValue:v};
+  if(typeof v==='string')return{stringValue:v};
+  if(Array.isArray(v))return{arrayValue:{values:v.map(toFV)}};
+  if(v&&typeof v==='object')return{mapValue:{fields:obj2f(v)}};
+  return{stringValue:String(v)};
 }
-function objToFields(obj) {
-  const f = {};
-  for (const k in obj) if (obj[k] !== undefined) f[k] = toFV(obj[k]);
-  return f;
-}
-// Convert Firestore field value → JS value
-function fromFV(fv) {
-  if (!fv) return null;
-  if ('nullValue'     in fv) return null;
-  if ('booleanValue'  in fv) return fv.booleanValue;
-  if ('integerValue'  in fv) return parseInt(fv.integerValue);
-  if ('doubleValue'   in fv) return fv.doubleValue;
-  if ('stringValue'   in fv) return fv.stringValue;
-  if ('timestampValue'in fv) return fv.timestampValue;
-  if ('arrayValue'    in fv) return (fv.arrayValue.values||[]).map(fromFV);
-  if ('mapValue'      in fv) return fieldsToObj(fv.mapValue.fields||{});
+function obj2f(o){const f={};for(const k in o)if(o[k]!==undefined)f[k]=toFV(o[k]);return f;}
+function fromFV(fv){
+  if(!fv)return null;
+  if('nullValue'in fv)return null;
+  if('booleanValue'in fv)return fv.booleanValue;
+  if('integerValue'in fv)return parseInt(fv.integerValue);
+  if('doubleValue'in fv)return fv.doubleValue;
+  if('stringValue'in fv)return fv.stringValue;
+  if('timestampValue'in fv)return fv.timestampValue;
+  if('arrayValue'in fv)return(fv.arrayValue.values||[]).map(fromFV);
+  if('mapValue'in fv)return f2obj(fv.mapValue.fields||{});
   return null;
 }
-function fieldsToObj(fields) {
-  const o = {};
-  for (const k in fields) o[k] = fromFV(fields[k]);
-  return o;
-}
-function docToObj(doc) {
-  const id = doc.name.split('/').pop();
-  return { id, ...fieldsToObj(doc.fields||{}) };
-}
+function f2obj(f){const o={};for(const k in f)o[k]=fromFV(f[k]);return o;}
+function doc2obj(d){return{id:d.name.split('/').pop(),...f2obj(d.fields||{})};}
 
-// ── REST helpers ──
-async function fsGet(col, id) {
-  const r = await fetch(`${BASE_URL}/${col}/${id}?key=${API_KEY}`);
-  if (!r.ok) return null;
-  const d = await r.json();
-  return docToObj(d);
+async function fsGet(col,id){const r=await fetch(`${BASE}/${col}/${id}?key=${API_KEY}`);if(!r.ok)return null;return doc2obj(await r.json());}
+async function fsQuery(col,field,value){
+  const body={structuredQuery:{from:[{collectionId:col}],where:{fieldFilter:{field:{fieldPath:field},op:'EQUAL',value:toFV(value)}}}};
+  const r=await fetch(`${BASE}:runQuery?key=${API_KEY}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+  const arr=await r.json();return arr.filter(x=>x.document).map(x=>doc2obj(x.document));
 }
-async function fsQuery(col, field, value) {
-  const body = {
-    structuredQuery: {
-      from: [{ collectionId: col }],
-      where: { fieldFilter: { field: { fieldPath: field }, op: 'EQUAL', value: toFV(value) } }
-    }
-  };
-  const r = await fetch(`${BASE_URL}:runQuery?key=${API_KEY}`, {
-    method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)
-  });
-  const arr = await r.json();
-  return arr.filter(x=>x.document).map(x=>docToObj(x.document));
+async function fsGetAll(col){const r=await fetch(`${BASE}/${col}?key=${API_KEY}`);if(!r.ok)return[];const d=await r.json();return(d.documents||[]).map(doc2obj);}
+async function fsAdd(col,data){const r=await fetch(`${BASE}/${col}?key=${API_KEY}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fields:obj2f(data)})});return doc2obj(await r.json());}
+async function fsSet(col,id,data){await fetch(`${BASE}/${col}/${id}?key=${API_KEY}`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({fields:obj2f(data)})});}
+async function fsUpdate(col,id,data){
+  const keys=Object.keys(data);const mask=keys.map(k=>`updateMask.fieldPaths=${encodeURIComponent(k)}`).join('&');
+  await fetch(`${BASE}/${col}/${id}?key=${API_KEY}&${mask}`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({fields:obj2f(data)})});
 }
-async function fsGetAll(col) {
-  const r = await fetch(`${BASE_URL}/${col}?key=${API_KEY}`);
-  if (!r.ok) return [];
-  const d = await r.json();
-  return (d.documents||[]).map(docToObj);
-}
-async function fsAdd(col, data) {
-  const r = await fetch(`${BASE_URL}/${col}?key=${API_KEY}`, {
-    method:'POST', headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({ fields: objToFields(data) })
-  });
-  const d = await r.json();
-  return docToObj(d);
-}
-async function fsSet(col, id, data) {
-  const r = await fetch(`${BASE_URL}/${col}/${id}?key=${API_KEY}`, {
-    method:'PATCH', headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({ fields: objToFields(data) })
-  });
-  return r.ok;
-}
-async function fsUpdate(col, id, data) {
-  // PATCH with updateMask
-  const keys = Object.keys(data);
-  const mask = keys.map(k=>`updateMask.fieldPaths=${encodeURIComponent(k)}`).join('&');
-  const r = await fetch(`${BASE_URL}/${col}/${id}?key=${API_KEY}&${mask}`, {
-    method:'PATCH', headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({ fields: objToFields(data) })
-  });
-  return r.ok;
-}
-async function fsDelete(col, id) {
-  await fetch(`${BASE_URL}/${col}/${id}?key=${API_KEY}`, { method:'DELETE' });
-}
+async function fsDelete(col,id){await fetch(`${BASE}/${col}/${id}?key=${API_KEY}`,{method:'DELETE'});}
 
-// ── State ──
-let currentUser = null;
-let currentHwEntryContext = null; // { childId, subjectSlot }
-let currentRatingHwId = null;
-let currentCommentHwId = null;
-let currentScheduleChild = 'shin';
-let currentHistoryChild = 'all';
-let unsubscribers = [];
+// ══════════════════════════════════════
+// STATE & CONSTANTS
+// ══════════════════════════════════════
+let CU=null; // current user
+let _hwEntryCtx=null,_ratingId=null,_commentId=null,_priorityCtx=null;
+let _selectedDifficulty=null;
+let _currentParentChild='shin';
 
-// ── Users ──
-const USERS = {
-  'me-duong':  { name: 'Mẹ Dương', avatar: '👩', role: 'parent', screen: 'screen-parent' },
-  'bo-hieu':   { name: 'Bố Hiếu',  avatar: '👨', role: 'parent', screen: 'screen-parent' },
-  'shin':      { name: 'Shin',      avatar: '🧒', role: 'child',  screen: 'screen-shin', childId: 'shin' },
-  'teppi':     { name: 'Teppi',     avatar: '👧', role: 'child',  screen: 'screen-teppi', childId: 'teppi' },
+const USERS={
+  'me-duong':{name:'Mẹ Dương',avatar:'👩',role:'parent',screen:'screen-parent'},
+  'bo-hieu':{name:'Bố Hiếu',avatar:'👨',role:'parent',screen:'screen-parent'},
+  'shin':{name:'Shin',avatar:'🧒',role:'child',screen:'screen-shin',childId:'shin'},
+  'teppi':{name:'Teppi',avatar:'👧',role:'child',screen:'screen-teppi',childId:'teppi'},
 };
-
-const CHILDREN = [
-  { id: 'shin',  name: 'Shin',  avatar: '🧒', age: 10, color: '#6C63FF', canSelfEnter: true },
-  { id: 'teppi', name: 'Teppi', avatar: '👧', age: 5,  color: '#FF6B6B', canSelfEnter: false },
+const CHILDREN=[
+  {id:'shin',name:'Shin',avatar:'🧒',age:10,color:'#6C63FF'},
+  {id:'teppi',name:'Teppi',avatar:'👧',age:5,color:'#FF6B6B'},
 ];
 
-// ── Helpers ──
-function today() { return new Date().toISOString().split('T')[0]; }
-function todayDate() { return new Date(); }
-
-function formatDate(str) {
-  if (!str) return '';
-  const d = new Date(str + 'T00:00:00');
-  const days = ['CN','T2','T3','T4','T5','T6','T7'];
-  return `${days[d.getDay()]} ${d.getDate()}/${d.getMonth()+1}`;
-}
-
-function daysUntil(str) {
-  if (!str) return null;
-  const d = new Date(str + 'T23:59:59');
-  const now = new Date();
-  return Math.ceil((d - now) / 86400000);
-}
-
-function deadlineBadge(str) {
-  const d = daysUntil(str);
-  if (d === null) return '';
-  if (d < 0) return `<span class="badge badge-red">Quá hạn ${Math.abs(d)} ngày</span>`;
-  if (d === 0) return `<span class="badge badge-red">🔴 Hôm nay!</span>`;
-  if (d === 1) return `<span class="badge badge-orange">⚠️ Ngày mai</span>`;
-  return `<span class="badge badge-gray">📅 ${formatDate(str)}</span>`;
-}
-
-function toast(msg, dur=2500) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), dur);
-}
-
-// ── Default Schedule (Shin) ──
-const DEFAULT_SCHEDULE_SHIN = [
-  { subject:'Toán', days:['2','4','6'], timeStart:'07:00', timeEnd:'11:30', type:'school' },
-  { subject:'Tiếng Việt', days:['2','4','6'], timeStart:'07:00', timeEnd:'11:30', type:'school' },
-  { subject:'Tiếng Anh', days:['3','5'], timeStart:'07:00', timeEnd:'11:30', type:'school' },
-  { subject:'Tiếng Anh (học thêm)', days:['3'], timeStart:'17:00', timeEnd:'19:00', type:'extra' },
-  { subject:'Toán (học thêm)', days:['5'], timeStart:'17:00', timeEnd:'19:00', type:'extra' },
-];
-const DEFAULT_SCHEDULE_TEPPI = [
-  { subject:'Tiếng Anh', days:['2','4','6'], timeStart:'08:00', timeEnd:'10:30', type:'school' },
-  { subject:'Vẽ', days:['7'], timeStart:'09:00', timeEnd:'11:00', type:'activity' },
+// Shin's schedule from Excel (Sắp xếp thời gian học - current academic year)
+const SHIN_DEFAULT_SCHEDULE=[
+  {subject:'Học ở trường',days:['2','3','4','5','6'],timeStart:'07:15',timeEnd:'16:30',type:'school'},
+  {subject:'Học ILA',days:['2','4'],timeStart:'17:30',timeEnd:'18:30',type:'extra'},
+  {subject:'Toán Thầy Dân',days:['3'],timeStart:'18:00',timeEnd:'20:30',type:'extra'},
+  {subject:'Tiếng Anh cô Hiền',days:['5','cn'],timeStart:'19:00',timeEnd:'20:30',type:'extra'},
+  {subject:'Học Piano',days:['4'],timeStart:'20:00',timeEnd:'21:00',type:'extra'},
+  {subject:'Kid A-Z',days:['2','3','4','5','6'],timeStart:'06:55',timeEnd:'07:15',type:'mom'},
+  {subject:'Luyện đàn',days:['2','3','4','5','6'],timeStart:'06:05',timeEnd:'06:20',type:'mom'},
+  {subject:'Làm bài trên lớp',days:['2','4'],timeStart:'20:00',timeEnd:'21:00',type:'mom'},
+  {subject:'Học Pickleball',days:['7'],timeStart:'06:05',timeEnd:'06:20',type:'extra'},
 ];
 
-// ── LOGIN ──
-window.login = function(userId) {
-  currentUser = { id: userId, ...USERS[userId] };
-  // clear previous listeners
-  unsubscribers.forEach(u => u());
-  unsubscribers = [];
+const TEPPI_DEFAULT_SCHEDULE=[
+  {subject:'Học đọc Ngọc Lâm',days:['3','5'],timeStart:'15:30',timeEnd:'16:30',type:'extra'},
+  {subject:'Học ILA',days:['3','5'],timeStart:'17:30',timeEnd:'19:30',type:'extra'},
+  {subject:'Tô màu / Lắp Lego',days:['2','4','6'],timeStart:'08:30',timeEnd:'09:30',type:'mom'},
+  {subject:'Học Razkid',days:['2','3','4','5','6'],timeStart:'09:45',timeEnd:'11:00',type:'mom'},
+];
 
-  // Show correct screen
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(currentUser.screen).classList.add('active');
+// ══════════════════════════════════════
+// HELPERS
+// ══════════════════════════════════════
+function today(){return new Date().toISOString().split('T')[0];}
+function formatDate(s){if(!s)return'';const d=new Date(s+'T00:00:00');const days=['CN','T2','T3','T4','T5','T6','T7'];return`${days[d.getDay()]} ${d.getDate()}/${d.getMonth()+1}`;}
+function daysUntil(s){if(!s)return null;const d=new Date(s+'T23:59:59');return Math.ceil((d-new Date())/86400000);}
+function deadlineBadge(s){
+  const d=daysUntil(s);if(d===null)return'';
+  if(d<0)return`<span class="badge badge-red">Quá hạn ${Math.abs(d)}n</span>`;
+  if(d===0)return`<span class="badge badge-red">🔴 Hôm nay!</span>`;
+  if(d===1)return`<span class="badge badge-orange">⚠️ Ngày mai</span>`;
+  return`<span class="badge badge-gray">📅 ${formatDate(s)}</span>`;
+}
+function toast(msg,dur=2500){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),dur);}
+function todayDayKey(){return['cn','2','3','4','5','6','7'][new Date().getDay()];}
 
-  if (currentUser.role === 'parent') {
-    document.getElementById('parent-nav-avatar').textContent = currentUser.avatar;
-    document.getElementById('parent-nav-name').textContent = currentUser.name;
-    loadParentDashboard();
+// ══════════════════════════════════════
+// LOGIN / LOGOUT
+// ══════════════════════════════════════
+window.login=function(uid){
+  CU={id:uid,...USERS[uid]};
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(CU.screen).classList.add('active');
+  if(CU.role==='parent'){
+    document.getElementById('p-avatar').textContent=CU.avatar;
+    document.getElementById('p-name').textContent=CU.name;
+    showParentTab('dashboard',document.querySelector('#parent-sidebar .nav-item'));
   } else {
-    loadChildScreen(currentUser.childId);
+    if(CU.childId==='shin') showChildTab('shin','schedule',document.querySelector('#shin-sidebar .nav-item'));
+    else showChildTab('teppi','todo',document.querySelector('#teppi-sidebar .nav-item'));
   }
 };
-
-window.logout = function() {
-  unsubscribers.forEach(u => u());
-  unsubscribers = [];
-  currentUser = null;
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+window.logout=function(){
+  CU=null;
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById('screen-login').classList.add('active');
 };
 
 // ══════════════════════════════════════
-// PARENT DASHBOARD
+// SIDEBAR MOBILE
 // ══════════════════════════════════════
-function loadParentDashboard() {
-  renderParentChecklist();
-  renderParentChildren();
-  renderPendingApprovals();
-  renderParentSchedule(currentScheduleChild);
-  renderParentHistory(currentHistoryChild);
-  document.getElementById('checklist-date-label').textContent = `Hôm nay, ${new Date().toLocaleDateString('vi-VN',{weekday:'long',day:'numeric',month:'long'})}`;
+window.openSidebar=function(id){
+  const sid=id||(CU?.screen==='screen-parent'?'parent-sidebar':CU?.childId+'-sidebar');
+  document.getElementById(sid)?.classList.add('open');
+  document.getElementById('overlay-mask').classList.add('open');
+};
+window.closeSidebar=function(){
+  document.querySelectorAll('.sidebar').forEach(s=>s.classList.remove('open'));
+  document.getElementById('overlay-mask').classList.remove('open');
+};
+
+// ══════════════════════════════════════
+// PARENT TABS
+// ══════════════════════════════════════
+window.showParentTab=function(tab,el){
+  document.querySelectorAll('#parent-sidebar .nav-item').forEach(b=>b.classList.remove('active'));
+  if(el)el.classList.add('active');
+  const titles={dashboard:'Dashboard',schedule:'Thời khoá biểu',todo:'To-do List',evaluate:'Đánh giá',settings:'Cài đặt'};
+  document.getElementById('p-mobile-title').textContent=titles[tab]||tab;
+  closeSidebar();
+  const area=document.getElementById('parent-page-area');
+  area.innerHTML='<div class="loading"><div class="spinner"></div></div>';
+  if(tab==='dashboard') renderParentDashboard();
+  else if(tab==='schedule') renderParentSchedulePage();
+  else if(tab==='todo') renderParentTodoPage();
+  else if(tab==='evaluate') renderParentEvaluatePage();
+  else if(tab==='settings') renderParentSettingsPage();
+};
+
+// ══════════════════════════════════════
+// CHILD TABS
+// ══════════════════════════════════════
+window.showChildTab=function(childId,tab,el){
+  document.querySelectorAll(`#${childId}-sidebar .nav-item`).forEach(b=>b.classList.remove('active'));
+  if(el)el.classList.add('active');
+  const titles={schedule:'Thời khoá biểu',todo:'To-do List',evaluate:'Đánh giá',settings:'Cài đặt'};
+  const mobileEl=document.getElementById(`${childId}-mobile-title`);
+  if(mobileEl)mobileEl.textContent=titles[tab]||tab;
+  closeSidebar();
+  const area=document.getElementById(`${childId}-page-area`);
+  area.innerHTML='<div class="loading"><div class="spinner"></div></div>';
+  if(tab==='schedule') renderChildSchedulePage(childId);
+  else if(tab==='todo') renderChildTodoPage(childId);
+  else if(tab==='evaluate') renderChildEvaluatePage(childId);
+  else if(tab==='settings') renderChildSettingsPage(childId);
+};
+
+// ══════════════════════════════════════
+// PAGE: PARENT DASHBOARD
+// ══════════════════════════════════════
+async function renderParentDashboard(){
+  const area=document.getElementById('parent-page-area');
+  let html=`<div class="page-header"><div class="page-title">📊 Dashboard</div><div class="page-sub">Tổng quan học tập của các con</div></div><div class="page-body">`;
+
+  // Child selector
+  html+=`<div class="tab-bar" style="margin-bottom:16px">
+    <button class="tab-btn ${_currentParentChild==='shin'?'active':''}" onclick="switchDashChild('shin')">🧒 Shin</button>
+    <button class="tab-btn ${_currentParentChild==='teppi'?'active':''}" onclick="switchDashChild('teppi')">👧 Teppi</button>
+  </div><div id="dash-child-content"></div></div>`;
+  area.innerHTML=html;
+  renderDashChildContent(_currentParentChild);
 }
+window.switchDashChild=function(childId){
+  _currentParentChild=childId;
+  document.querySelectorAll('#parent-page-area .tab-btn').forEach((b,i)=>b.classList.toggle('active',['shin','teppi'][i]===childId));
+  renderDashChildContent(childId);
+};
+async function renderDashChildContent(childId){
+  const c=document.getElementById('dash-child-content');
+  c.innerHTML='<div class="loading"><div class="spinner"></div></div>';
+  const child=CHILDREN.find(x=>x.id===childId);
+  const hws=await fsQuery('homeworks','childId',childId);
+  const active=hws.filter(h=>!h.done);
+  const done=hws.filter(h=>h.done);
+  const overdue=active.filter(h=>daysUntil(h.deadline)<0).length;
+  const pending=hws.filter(h=>h.status==='pending_review').length;
+  const stars=await fsGet('stars',childId)||{total:0,streak:0};
 
-async function renderParentChildren() {
-  const container = document.getElementById('parent-children-cards');
-  container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
-
-  let html = '';
-  for (const child of CHILDREN) {
-    const hws = await getChildHomeworks(child.id);
-    const todayHws = hws.filter(h => !h.done);
-    const doneToday = hws.filter(h => h.done).length;
-    const total = hws.length;
-    const overdue = hws.filter(h => !h.done && daysUntil(h.deadline) < 0).length;
-    const pending = hws.filter(h => h.status === 'pending_review').length;
-    const awareness = calcAwareness(child.id, hws);
-
-    html += `
-    <div class="child-card" style="border-left-color:${child.color}">
-      <div class="child-card-header">
-        <div class="child-avatar-lg">${child.avatar}</div>
-        <div class="child-info" style="flex:1">
-          <h3>${child.name}</h3>
-          <p>${child.age} tuổi</p>
-        </div>
-        <div>${awarenessEmoji(awareness)}</div>
-        <button class="btn btn-sm btn-secondary" onclick="openCommentModal(null,'${child.id}')">💬</button>
-        <button class="btn btn-sm btn-primary" onclick="openAssignModalFor('${child.id}')">+ Giao</button>
-      </div>
-      <div class="child-stats">
-        <div class="child-stat">
-          <div class="stat-num" style="color:${child.color}">${doneToday}</div>
-          <div class="stat-label">✅ Xong</div>
-        </div>
-        <div class="child-stat">
-          <div class="stat-num" style="color:var(--orange)">${todayHws.length}</div>
-          <div class="stat-label">📋 Còn lại</div>
-        </div>
-        <div class="child-stat">
-          <div class="stat-num" style="color:${overdue>0?'var(--red)':'var(--text-soft)'}">${overdue}</div>
-          <div class="stat-label">🔴 Trễ hạn</div>
-        </div>
-      </div>
-      ${pending > 0 ? `<div style="margin-top:10px"><span class="badge badge-orange">⏳ ${pending} bài chờ duyệt</span></div>` : ''}
-      ${total > 0 ? `
-      <div style="margin-top:12px">
-        <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-soft);margin-bottom:4px">
-          <span>Tiến độ hôm nay</span><span>${doneToday}/${total}</span>
-        </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:${total?Math.round(doneToday/total*100):0}%;background:${child.color}"></div></div>
-      </div>` : ''}
-      ${awarenessCard(awareness)}
-    </div>`;
-  }
-  container.innerHTML = html || '<div class="empty-state"><div class="empty-icon">📋</div><p>Chưa có bài tập nào</p></div>';
-}
-
-function calcAwareness(childId, hws) {
-  // Score based on recent completions
-  const recent = hws.filter(h => h.done).slice(-10);
-  if (recent.length === 0) return null;
-  let score = 0;
-  recent.forEach(h => {
-    const d = daysUntil(h.deadline);
-    if (h.completedAt && h.deadline) {
-      const completedDate = h.completedAt.toDate ? h.completedAt.toDate() : new Date(h.completedAt);
-      const deadlineDate = new Date(h.deadline + 'T23:59:59');
-      const diff = (deadlineDate - completedDate) / 86400000;
-      if (diff >= 1) score += 3;
-      else if (diff >= 0) score += 2;
-      else score += 0;
-    }
-  });
-  return Math.round(score / recent.length * 10);
-}
-
-function awarenessEmoji(score) {
-  if (score === null) return '';
-  if (score >= 25) return '🌟';
-  if (score >= 15) return '😊';
-  if (score >= 8) return '😐';
-  return '😔';
-}
-
-function awarenessCard(score) {
-  if (score === null) return '';
-  let cls, label;
-  if (score >= 25) { cls = 'excellent'; label = 'Xuất sắc — Luôn hoàn thành sớm! 🌟'; }
-  else if (score >= 15) { cls = 'good'; label = 'Tốt — Hoàn thành đúng hạn 😊'; }
-  else if (score >= 8) { cls = 'needs-work'; label = 'Cần cố gắng hơn ⚡'; }
-  else { cls = 'poor'; label = 'Cần nhắc nhở nhiều 💬'; }
-  return `<div class="awareness-card ${cls}" style="margin-top:10px;padding:10px 12px">
-    <p style="font-size:12px;color:rgba(255,255,255,0.8);margin-bottom:0">${label}</p>
+  let html=`
+  <div class="child-card" style="border-left:4px solid ${child.color}">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+      <span style="font-size:40px">${child.avatar}</span>
+      <div style="flex:1"><div style="font-size:18px;font-weight:800">${child.name}</div><div style="font-size:13px;color:var(--text-soft)">${child.age} tuổi</div></div>
+      <span style="font-size:28px">⭐ ${stars.total||0}</span>
+    </div>
+    <div class="child-stats">
+      <div class="child-stat"><div class="stat-num" style="color:var(--orange)">${active.length}</div><div class="stat-label">📋 Cần làm</div></div>
+      <div class="child-stat"><div class="stat-num" style="color:${child.color}">${done.length}</div><div class="stat-label">✅ Đã xong</div></div>
+      <div class="child-stat"><div class="stat-num" style="color:${overdue>0?'var(--red)':'var(--text-soft)'}">${overdue}</div><div class="stat-label">🔴 Trễ hạn</div></div>
+    </div>
+    ${hws.length>0?`<div style="margin-top:12px"><div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-soft);margin-bottom:4px"><span>Tiến độ</span><span>${done.length}/${hws.length}</span></div><div class="progress-bar"><div class="progress-fill" style="width:${Math.round(done.length/hws.length*100)}%;background:${child.color}"></div></div></div>`:''}
+    ${pending>0?`<div style="margin-top:10px"><span class="badge badge-orange">⏳ ${pending} bài chờ duyệt</span></div>`:''}
+    <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
+      <button class="btn btn-primary btn-sm" onclick="openAssignModal('${childId}')">+ Giao bài</button>
+      <button class="btn btn-secondary btn-sm" onclick="openCommentModal(null,'${childId}')">💬 Nhắn nhủ</button>
+    </div>
   </div>`;
-}
 
-async function renderPendingApprovals() {
-  const container = document.getElementById('pending-approvals-section');
-  let all = [];
-  for (const child of CHILDREN) {
-    const hws = await getChildHomeworks(child.id);
-    hws.filter(h => h.status === 'pending_review').forEach(h => all.push({...h, childName: child.name, childAvatar: child.avatar}));
-  }
-  if (all.length === 0) { container.innerHTML = ''; return; }
-  let html = `<div class="card"><div class="card-title">⏳ Chờ duyệt (${all.length})</div>`;
-  all.forEach(h => {
-    html += `<div class="approval-item">
-      <div class="appr-header">
-        <span>${h.childAvatar} <strong>${h.childName}</strong> — ${h.subject || ''}</span>
-        <span class="badge badge-orange">Chờ duyệt</span>
-      </div>
-      <div style="font-size:14px;font-weight:700">${h.name}</div>
-      ${h.lessonContent ? `<div style="font-size:12px;color:var(--text-soft);margin-top:4px">📖 Nội dung buổi học: ${h.lessonContent}</div>` : ''}
-      ${h.book ? `<div style="font-size:12px;color:var(--text-soft)">📚 ${h.book}${h.page?' tr.'+h.page:''}</div>` : ''}
-      <div class="appr-actions">
-        <button class="btn btn-sm btn-green" onclick="approveHw('${h.id}','${h.childId}')">✅ Duyệt</button>
-        <button class="btn btn-sm btn-secondary" onclick="openCommentModalHw('${h.id}','${h.childId}','${h.name}')">💬 Nhận xét</button>
-      </div>
-    </div>`;
-  });
-  html += '</div>';
-  container.innerHTML = html;
-}
-
-async function renderParentChecklist() {
-  const container = document.getElementById('parent-checklist-content');
-  container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
-  let html = '';
-  for (const child of CHILDREN) {
-    const hws = await getChildHomeworks(child.id);
-    const sorted = [...hws].sort((a,b) => (a.priority||99)-(b.priority||99));
-    html += `<div class="checklist-child-section">
-      <div class="checklist-child-header">
-        <span style="font-size:24px">${child.avatar}</span>
-        <div style="flex:1"><strong style="font-size:15px">${child.name}</strong></div>
-        <span class="badge badge-${sorted.filter(h=>h.done).length===sorted.length&&sorted.length>0?'green':'purple'}">${sorted.filter(h=>h.done).length}/${sorted.length} xong</span>
-      </div>`;
-    if (sorted.length === 0) {
-      html += `<div style="color:var(--text-soft);font-size:13px;padding:8px 0">Chưa có bài tập nào</div>`;
-    }
-    sorted.forEach((h,i) => {
-      html += `<div class="hw-item ${h.done?'done':''}">
-        <div class="hw-check ${h.done?'checked':''}">${h.done?'✓':''}</div>
-        <div class="hw-body">
-          <div class="hw-name">${h.name}</div>
-          <div class="hw-meta">
-            ${h.subject?`<span class="hw-tag hw-tag-${h.source==='parent'?'parent':'school'}">${h.subject}</span>`:''}
-            ${deadlineBadge(h.deadline)}
-            ${h.difficulty?`<span class="badge badge-gray">${h.difficulty==='easy'?'😊':h.difficulty==='hard'?'😓':'🤔'}</span>`:''}
-            ${h.needHelp==='yes'?`<span class="badge badge-red">🙋 Cần giúp</span>`:''}
-          </div>
-          ${h.comment?`<div class="comment-box"><div class="comment-from">💬 Bố/Mẹ</div><div class="comment-text">${h.comment}</div></div>`:''}
-          ${h.lessonContent?`<div style="font-size:12px;color:var(--text-soft);margin-top:4px">📖 ${h.lessonContent}</div>`:''}
-        </div>
-        <button class="btn btn-sm btn-secondary" style="padding:6px 10px" onclick="openCommentModalHw('${h.id}','${child.id}','${h.name.replace(/'/g,"\\'")}')">💬</button>
-      </div>`;
-    });
-    html += '</div>';
-  }
-  container.innerHTML = html || '<div class="empty-state"><div class="empty-icon">✅</div><p>Không có bài tập nào</p></div>';
-}
-
-async function renderParentSchedule(childId) {
-  const container = document.getElementById('parent-schedule-content');
-  container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
-  const slots = await getSchedule(childId);
-  if (slots.length === 0) {
-    container.innerHTML = `<div class="empty-state"><div class="empty-icon">📅</div><p>Chưa có thời khoá biểu<br>Nhấn "Chỉnh sửa" để thêm môn học</p></div>`;
-    return;
-  }
-  const dayNames = {'2':'Thứ 2','3':'Thứ 3','4':'Thứ 4','5':'Thứ 5','6':'Thứ 6','7':'Thứ 7','cn':'Chủ nhật'};
-  const dayOrder = ['2','3','4','5','6','7','cn'];
-  const byDay = {};
-  slots.forEach(s => (s.days||[]).forEach(d => {
-    if (!byDay[d]) byDay[d] = [];
-    byDay[d].push(s);
-  }));
-  let html = '';
-  dayOrder.forEach(d => {
-    if (!byDay[d]) return;
-    html += `<div class="schedule-day"><div class="schedule-day-header"><span class="day-label">${dayNames[d]}</span></div>`;
-    byDay[d].sort((a,b)=>a.timeStart?.localeCompare(b.timeStart||'')||0).forEach(s => {
-      const typeIcon = s.type==='extra'?'🎯':s.type==='activity'?'🎨':'📚';
-      html += `<div class="subject-slot">
-        <span class="slot-time">${s.timeStart||'--:--'}</span>
-        <div style="flex:1"><div class="slot-subject">${typeIcon} ${s.subject}</div><div class="slot-type">${s.type==='school'?'Học trên lớp':s.type==='extra'?'Học thêm':'Ngoại khoá'}</div></div>
-        <button class="btn btn-sm btn-danger" onclick="deleteScheduleSlot('${s.id}','${childId}')">🗑</button>
-      </div>`;
-    });
-    html += '</div>';
-  });
-  container.innerHTML = html;
-}
-
-async function renderParentHistory(childFilter) {
-  const container = document.getElementById('parent-history-content');
-  container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
-  let allDone = [];
-  for (const child of CHILDREN) {
-    if (childFilter !== 'all' && child.id !== childFilter) continue;
-    const hws = await getChildHomeworks(child.id);
-    hws.filter(h=>h.done).forEach(h => allDone.push({...h, childName:child.name, childAvatar:child.avatar}));
-  }
-  allDone.sort((a,b) => {
-    const ta = a.completedAt?.toDate ? a.completedAt.toDate() : new Date(a.completedAt||0);
-    const tb = b.completedAt?.toDate ? b.completedAt.toDate() : new Date(b.completedAt||0);
-    return tb - ta;
-  });
-  if (allDone.length === 0) {
-    container.innerHTML = '<div class="empty-state"><div class="empty-icon">📈</div><p>Chưa có bài tập nào hoàn thành</p></div>';
-    return;
-  }
-  let html = '';
-  allDone.forEach(h => {
-    const d = daysUntil(h.deadline);
-    const timely = d !== null && d >= 0;
-    html += `<div class="history-item">
-      <span class="hist-icon">${h.childAvatar}</span>
-      <div class="hist-body">
-        <div class="hist-name">${h.childName} — ${h.name}</div>
-        <div class="hist-meta">${h.subject||''} ${h.deadline?'• Hạn: '+formatDate(h.deadline):''}</div>
-      </div>
-      <span class="hist-badge">${timely?'✅':'⚠️'}</span>
-    </div>`;
-  });
-  container.innerHTML = html;
-}
-
-// ══════════════════════════════════════
-// CHILD SCREEN
-// ══════════════════════════════════════
-async function loadChildScreen(childId) {
-  const child = CHILDREN.find(c=>c.id===childId);
-  renderChildToday(childId);
-  renderChildSchedule(childId);
-  renderChildStars(childId);
-  checkAlerts(childId);
-}
-
-async function renderChildToday(childId) {
-  const container = document.getElementById(`${childId}-today-content`);
-  container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
-  const hws = await getChildHomeworks(childId);
-  const active = hws.filter(h=>!h.done).sort((a,b)=>(a.priority||99)-(b.priority||99));
-  const done = hws.filter(h=>h.done);
-
-  // Check if needs priority arrangement
-  const needsPriority = active.some(h=>!h.priority);
-
-  let html = '';
-
-  if (active.length === 0 && done.length === 0) {
-    html = '<div class="empty-state"><div class="empty-icon">🎉</div><p>Hôm nay chưa có bài tập nào!</p></div>';
-  } else {
-    if (needsPriority && active.length > 1) {
-      html += `<div class="card" style="border:2px dashed var(--primary)">
-        <div style="text-align:center;padding:8px 0">
-          <div style="font-size:24px;margin-bottom:6px">📋</div>
-          <div style="font-weight:800;margin-bottom:4px">Sắp xếp thứ tự ưu tiên</div>
-          <div style="font-size:13px;color:var(--text-soft);margin-bottom:12px">Con hãy sắp xếp bài nào làm trước, bài nào làm sau nhé!</div>
-          <button class="btn btn-primary btn-sm" onclick="openPriorityModal('${childId}')">📝 Sắp xếp ngay</button>
+  // Pending approvals
+  const pendingHws=hws.filter(h=>h.status==='pending_review');
+  if(pendingHws.length>0){
+    html+=`<div class="card"><div class="card-title">⏳ Bài con tự nhập — Chờ duyệt</div>`;
+    pendingHws.forEach(h=>{
+      html+=`<div style="background:var(--orange-light);border:1.5px solid #FED7AA;border-radius:10px;padding:12px;margin-bottom:8px">
+        <div style="font-weight:700;margin-bottom:4px">${h.name}</div>
+        <div style="font-size:12px;color:var(--text-soft)">${h.subject||''} ${h.deadline?'• Hạn: '+formatDate(h.deadline):''}</div>
+        ${h.lessonContent?`<div style="font-size:12px;color:var(--text-soft);margin-top:4px">📖 ${h.lessonContent}</div>`:''}
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button class="btn btn-sm btn-green" onclick="approveHw('${h.id}','${childId}')">✅ Duyệt</button>
+          <button class="btn btn-sm btn-secondary" onclick="openCommentModalHw('${h.id}','${h.name.replace(/'/g,"\\'")}')">💬</button>
         </div>
       </div>`;
-    }
+    });
+    html+='</div>';
+  }
 
-    if (active.length > 0) {
-      html += `<div style="margin-bottom:8px;display:flex;align-items:center;justify-content:space-between">
-        <span style="font-size:14px;font-weight:800">📋 Cần làm (${active.length})</span>
-        ${active.length > 1 ? `<button class="btn btn-sm btn-secondary" onclick="openPriorityModal('${childId}')">Sắp xếp lại</button>` : ''}
-      </div>`;
-      active.forEach((h,i) => {
-        const d = daysUntil(h.deadline);
-        html += `<div class="hw-item" id="hw-${h.id}">
-          <div class="hw-priority">${h.priority||'—'}</div>
-          <div class="hw-body">
-            <div class="hw-name">${h.name}</div>
-            <div class="hw-meta">
+  // Active todos
+  if(active.length>0){
+    html+=`<div class="card"><div class="card-title">📋 Danh sách việc cần làm</div>`;
+    active.sort((a,b)=>(a.priority||99)-(b.priority||99)).forEach(h=>{
+      html+=`<div class="todo-item">
+        <div class="todo-header">
+          <div class="todo-priority">${h.priority||'—'}</div>
+          <div class="todo-body">
+            <div class="todo-name">${h.name}</div>
+            <div class="todo-meta">
               ${h.subject?`<span class="hw-tag hw-tag-${h.source==='parent'?'parent':'school'}">${h.subject}</span>`:''}
               ${deadlineBadge(h.deadline)}
+              <span class="status-badge status-${h.status==='doing'?'doing':'todo'}">${h.status==='doing'?'🔄 Đang làm':'⏰ Chờ làm'}</span>
             </div>
-            ${h.link?`<a href="${h.link}" target="_blank" class="btn btn-sm btn-secondary" style="margin-top:8px">🔗 Mở tài liệu</a>`:''}
-            ${h.note?`<div style="font-size:12px;color:var(--text-soft);margin-top:4px">📝 ${h.note}</div>`:''}
-            ${h.comment?`<div class="comment-box"><div class="comment-from">💬 Bố/Mẹ nhận xét</div><div class="comment-text">${h.comment}</div></div>`:''}
-            <div class="hw-actions">
-              <button class="btn btn-sm btn-green" onclick="markDone('${h.id}','${childId}')">✅ Đã xong</button>
+            ${h.comment?`<div class="comment-box"><div class="comment-from">💬 Nhận xét</div><div class="comment-text">${h.comment}</div></div>`:''}
+          </div>
+          <button class="btn btn-sm btn-secondary" style="padding:5px 8px" onclick="openCommentModalHw('${h.id}','${h.name.replace(/'/g,"\\'")}')">💬</button>
+        </div>
+      </div>`;
+    });
+    html+='</div>';
+  }
+
+  c.innerHTML=html||'<div class="empty-state"><div class="empty-icon">📋</div><p>Chưa có dữ liệu</p></div>';
+}
+
+// ══════════════════════════════════════
+// PAGE: SCHEDULE
+// ══════════════════════════════════════
+async function renderParentSchedulePage(){
+  const area=document.getElementById('parent-page-area');
+  area.innerHTML=`<div class="page-header"><div class="page-title">📅 Thời khoá biểu</div><div class="page-sub">Lịch học của các con</div></div>
+  <div class="page-body">
+    <div class="tab-bar"><button class="tab-btn active" onclick="switchSchedChild('shin',this)">🧒 Shin</button><button class="tab-btn" onclick="switchSchedChild('teppi',this)">👧 Teppi</button></div>
+    <div class="upload-zone">
+      <div style="font-size:28px;margin-bottom:6px">📊</div>
+      <div style="font-weight:800;margin-bottom:4px">Upload file Excel TKB</div>
+      <div style="font-size:12px;color:var(--text-soft);margin-bottom:10px">App tự đọc và import — Cột = Thứ, Hàng = Giờ/Môn</div>
+      <input type="file" id="excel-upload" accept=".xlsx,.xls,.csv" style="display:none" onchange="handleExcelUpload(event)">
+      <button class="btn btn-primary btn-sm" onclick="document.getElementById('excel-upload').click()">📂 Chọn file Excel</button>
+      <div id="upload-status" style="margin-top:8px;font-size:13px;color:var(--text-soft)"></div>
+    </div>
+    <div id="sched-content"></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn btn-secondary" style="flex:1" onclick="openModal('modal-schedule')">➕ Thêm môn thủ công</button>
+      <button class="btn btn-danger btn-sm" onclick="clearScheduleConfirm()">🗑 Xoá TKB</button>
+    </div>
+  </div>`;
+  renderSchedContent('shin');
+}
+
+let _schedChild='shin';
+window.switchSchedChild=function(childId,el){
+  _schedChild=childId;
+  document.querySelectorAll('#parent-page-area .tab-btn').forEach((b,i)=>b.classList.toggle('active',['shin','teppi'][i]===childId));
+  document.getElementById('sched-child').value=childId;
+  renderSchedContent(childId);
+};
+
+async function renderSchedContent(childId){
+  const c=document.getElementById('sched-content');
+  if(!c)return;
+  c.innerHTML='<div class="loading"><div class="spinner"></div></div>';
+  const slots=await getSchedule(childId);
+  c.innerHTML=buildWeekTable(slots,childId,true);
+}
+
+function buildWeekTable(slots,childId,showDelete=false){
+  if(!slots.length)return`<div class="empty-state"><div class="empty-icon">📅</div><p>Chưa có thời khoá biểu<br>Upload Excel hoặc thêm thủ công</p></div>`;
+  const DAYS=['2','3','4','5','6','7','cn'];
+  const DNAMES={'2':'Thứ 2','3':'Thứ 3','4':'Thứ 4','5':'Thứ 5','6':'Thứ 6','7':'Thứ 7','cn':'CN'};
+  const today=todayDayKey();
+  const timeSet=new Set();
+  slots.forEach(s=>{if(s.timeStart)timeSet.add(s.timeStart);});
+  const times=[...timeSet].sort();if(!times.length)times.push('');
+  const activeDays=DAYS.filter(d=>slots.some(s=>(s.days||[]).includes(d)));
+  const lookup={};
+  slots.forEach(s=>(s.days||[]).forEach(d=>{const t=s.timeStart||'';if(!lookup[d])lookup[d]={};if(!lookup[d][t])lookup[d][t]=[];lookup[d][t].push(s);}));
+
+  let html=`<div class="week-table-wrap"><table class="week-table"><thead><tr><th>Giờ</th>`;
+  activeDays.forEach(d=>html+=`<th class="${d===today?'today-col':''}">${DNAMES[d]}${d===today?' 📍':''}</th>`);
+  html+=`</tr></thead><tbody>`;
+  times.forEach(t=>{
+    html+=`<tr><td style="font-size:11px;white-space:nowrap">${t||'—'}</td>`;
+    activeDays.forEach(d=>{
+      const cell=(lookup[d]||{})[t]||[];
+      const isToday=d===today;
+      html+=`<td class="${isToday?'today-col':''}"><div class="slot-cell">`;
+      if(!cell.length){html+=`<span class="slot-pill empty">—</span>`;}
+      else cell.forEach(s=>{
+        const cls=s.type==='extra'?'extra':s.type==='mom'?'mom':'school';
+        const ico=s.type==='extra'?'🎯':s.type==='mom'?'👩':'📚';
+        html+=`<div class="slot-pill ${cls}">${ico} ${s.subject}`;
+        if(showDelete)html+=` <span onclick="deleteSlot('${s.id}','${childId}')" style="cursor:pointer;opacity:.5;font-size:10px">✕</span>`;
+        html+=`</div>`;
+        // + BTVN button (for admin view too)
+        html+=`<button class="add-hw-btn" onclick="openHwEntryFromSlot('${childId}','${s.subject}','${s.id}')" title="Thêm BTVN">+</button>`;
+      });
+      html+=`</div></td>`;
+    });
+    html+=`</tr>`;
+  });
+  html+=`</tbody></table></div>`;
+  return html;
+}
+
+// ══════════════════════════════════════
+// PAGE: CHILD SCHEDULE
+// ══════════════════════════════════════
+async function renderChildSchedulePage(childId){
+  const area=document.getElementById(`${childId}-page-area`);
+  area.innerHTML='<div class="loading"><div class="spinner"></div></div>';
+  const slots=await getSchedule(childId);
+  const todayKey=todayDayKey();
+  const todaySlots=slots.filter(s=>(s.days||[]).includes(todayKey)).sort((a,b)=>a.timeStart?.localeCompare(b.timeStart||'')||0);
+
+  let html=`<div class="page-header"><div class="page-title">📅 Thời khoá biểu</div><div class="page-sub">${new Date().toLocaleDateString('vi-VN',{weekday:'long',day:'numeric',month:'long'})}</div></div>
+  <div class="page-body">`;
+
+  // Today highlight
+  if(todaySlots.length){
+    html+=`<div class="card" style="border-left:4px solid var(--primary)"><div class="card-title">📍 Hôm nay có ${todaySlots.length} môn</div>`;
+    todaySlots.forEach(s=>{
+      const ico=s.type==='extra'?'🎯':s.type==='mom'?'👩':'📚';
+      html+=`<div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)">
+        <span style="font-size:20px">${ico}</span>
+        <div style="flex:1"><div style="font-weight:700">${s.subject}</div><div style="font-size:12px;color:var(--text-soft)">${s.timeStart||''}${s.timeEnd?' - '+s.timeEnd:''}</div></div>
+        ${childId==='shin'?`<button class="btn btn-sm btn-green" onclick="openHwEntryFromSlot('shin','${s.subject}','${s.id}')">+ BTVN</button>`:''}
+      </div>`;
+    });
+    html+=`</div>`;
+  }
+
+  html+=buildWeekTable(slots,childId,false);
+  if(childId==='shin') html+=`<button class="btn btn-secondary btn-full" onclick="openHwEntryDirect('shin')">+ Thêm BTVN không có trong lịch</button>`;
+  html+=`</div>`;
+  area.innerHTML=html;
+}
+
+// ══════════════════════════════════════
+// PAGE: TODO LIST (Parent)
+// ══════════════════════════════════════
+async function renderParentTodoPage(){
+  const area=document.getElementById('parent-page-area');
+  area.innerHTML=`<div class="page-header"><div class="page-title">✅ To-do List</div><div class="page-sub">Bài tập của các con</div></div>
+  <div class="page-body">
+    <div class="tab-bar"><button class="tab-btn active" onclick="switchTodoChild('shin',this)">🧒 Shin</button><button class="tab-btn" onclick="switchTodoChild('teppi',this)">👧 Teppi</button></div>
+    <div id="todo-content"></div>
+  </div>`;
+  renderTodoContent('shin');
+}
+let _todoChild='shin';
+window.switchTodoChild=function(childId,el){
+  _todoChild=childId;
+  document.querySelectorAll('#parent-page-area .tab-btn').forEach((b,i)=>b.classList.toggle('active',['shin','teppi'][i]===childId));
+  renderTodoContent(childId);
+};
+async function renderTodoContent(childId){
+  const c=document.getElementById('todo-content');if(!c)return;
+  c.innerHTML='<div class="loading"><div class="spinner"></div></div>';
+  const hws=await fsQuery('homeworks','childId',childId);
+  c.innerHTML=buildTodoHTML(hws,childId,true)+`<button class="btn btn-primary btn-full" style="margin-top:8px" onclick="openAssignModal('${childId}')">+ Giao bài cho ${childId==='shin'?'Shin':'Teppi'}</button>`;
+}
+
+// ══════════════════════════════════════
+// PAGE: TODO LIST (Child)
+// ══════════════════════════════════════
+async function renderChildTodoPage(childId){
+  const area=document.getElementById(`${childId}-page-area`);
+  area.innerHTML='<div class="loading"><div class="spinner"></div></div>';
+  const hws=await fsQuery('homeworks','childId',childId);
+  const active=hws.filter(h=>!h.done).sort((a,b)=>(a.priority||99)-(b.priority||99));
+  const needsPriority=active.length>1&&active.some(h=>!h.priority);
+  let html=`<div class="page-header"><div class="page-title">✅ To-do List</div><div class="page-sub">Bài tập cần làm</div></div><div class="page-body">`;
+
+  // Alerts
+  active.filter(h=>daysUntil(h.deadline)!==null&&daysUntil(h.deadline)<=1&&daysUntil(h.deadline)>=0).forEach(h=>{
+    html+=`<div class="alert-banner"><span style="font-size:18px">⚠️</span><p>"${h.name}" ${daysUntil(h.deadline)===0?'đến hạn HÔM NAY':'đến hạn NGÀY MAI'}!</p></div>`;
+  });
+
+  if(needsPriority){
+    html+=`<div class="card" style="border:2px dashed var(--primary);text-align:center;padding:20px">
+      <div style="font-size:24px;margin-bottom:8px">📋</div>
+      <div style="font-weight:800;margin-bottom:6px">Sắp xếp thứ tự ưu tiên</div>
+      <div style="font-size:13px;color:var(--text-soft);margin-bottom:12px">Con hãy chọn bài nào làm trước nhé!</div>
+      <button class="btn btn-primary btn-sm" onclick="openPriorityModal('${childId}')">📝 Sắp xếp ngay</button>
+    </div>`;
+  }
+
+  html+=buildTodoHTML(hws,childId,false);
+  if(childId==='shin') html+=`<button class="btn btn-secondary btn-full" style="margin-top:8px" onclick="openHwEntryDirect('shin')">+ Thêm BTVN từ trường</button>`;
+  html+=`</div>`;
+  area.innerHTML=html;
+}
+
+function buildTodoHTML(hws,childId,isAdmin){
+  const active=hws.filter(h=>!h.done).sort((a,b)=>(a.priority||99)-(b.priority||99));
+  const done=hws.filter(h=>h.done);
+  if(!hws.length)return`<div class="empty-state"><div class="empty-icon">🎉</div><p>Chưa có bài tập nào!</p></div>`;
+  let html='';
+  if(active.length){
+    html+=`<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+      <span style="font-weight:800">📋 Cần làm (${active.length})</span>
+      ${active.length>1&&!isAdmin?`<button class="btn btn-sm btn-secondary" onclick="openPriorityModal('${childId}')">Sắp xếp lại</button>`:''}
+    </div>`;
+    active.forEach(h=>{
+      const statusClass=h.status==='doing'?'status-doing':'status-todo';
+      const statusLabel=h.status==='doing'?'🔄 Đang làm':'⏰ Chờ làm';
+      const nextStatus=h.status==='doing'?'done':'doing';
+      const nextLabel=h.status==='doing'?'✅ Hoàn thành':'▶️ Bắt đầu làm';
+      html+=`<div class="todo-item">
+        <div class="todo-header">
+          <div class="todo-priority">${h.priority||'—'}</div>
+          <div class="todo-body">
+            <div class="todo-name">${h.name}</div>
+            <div class="todo-meta">
+              ${h.subject?`<span class="hw-tag hw-tag-${h.source==='parent'?'parent':'school'}">${h.subject}</span>`:''}
+              ${deadlineBadge(h.deadline)}
+              <span class="status-badge ${statusClass}">${statusLabel}</span>
+            </div>
+            ${h.book?`<div style="font-size:12px;color:var(--text-soft)">📚 ${h.book}${h.page?' tr.'+h.page:''}</div>`:''}
+            ${h.lessonContent?`<div style="font-size:12px;color:var(--text-soft)">📖 ${h.lessonContent}</div>`:''}
+            ${h.link?`<a href="${h.link}" target="_blank" class="btn btn-sm btn-secondary" style="margin-top:6px">🔗 Mở tài liệu</a>`:''}
+            ${h.comment?`<div class="comment-box"><div class="comment-from">💬 Bố/Mẹ</div><div class="comment-text">${h.comment}</div></div>`:''}
+            <div class="todo-actions">
+              ${isAdmin?`<button class="btn btn-sm btn-secondary" onclick="openCommentModalHw('${h.id}','${h.name.replace(/'/g,"\\'")}')">💬 Nhận xét</button>
+                <button class="btn btn-sm btn-danger" onclick="deleteHw('${h.id}','${childId}')">🗑</button>`
+              :`<button class="btn btn-sm ${nextStatus==='done'?'btn-green':'btn-orange'}" onclick="updateHwStatus('${h.id}','${childId}','${nextStatus}')">${nextLabel}</button>`}
             </div>
           </div>
-        </div>`;
-      });
-    }
-
-    if (done.length > 0) {
-      html += `<div style="margin:16px 0 8px;font-size:14px;font-weight:800;color:var(--text-soft)">✅ Đã hoàn thành (${done.length})</div>`;
-      done.forEach(h => {
-        html += `<div class="hw-item done">
-          <div class="hw-check checked">✓</div>
-          <div class="hw-body">
-            <div class="hw-name">${h.name}</div>
-            <div class="hw-meta">
+        </div>
+      </div>`;
+    });
+  }
+  if(done.length){
+    html+=`<div style="font-size:14px;font-weight:800;color:var(--text-soft);margin:16px 0 8px">✅ Đã hoàn thành (${done.length})</div>`;
+    done.forEach(h=>{
+      html+=`<div class="todo-item done-item">
+        <div class="todo-header">
+          <div class="todo-priority" style="background:var(--green-light);color:var(--green)">✓</div>
+          <div class="todo-body">
+            <div class="todo-name">${h.name}</div>
+            <div class="todo-meta">
               ${h.subject?`<span class="hw-tag hw-tag-${h.source==='parent'?'parent':'school'}">${h.subject}</span>`:''}
+              <span class="status-badge status-done">✅ Hoàn thành</span>
               ${h.difficulty?`<span class="badge badge-gray">${h.difficulty==='easy'?'😊 Dễ':h.difficulty==='hard'?'😓 Khó':'🤔 Bình thường'}</span>`:''}
             </div>
             ${h.comment?`<div class="comment-box"><div class="comment-from">💬 Bố/Mẹ</div><div class="comment-text">${h.comment}</div></div>`:''}
           </div>
-        </div>`;
-      });
-    }
-  }
-
-  // Add button (for Shin only)
-  if (childId === 'shin') {
-    html += `<button class="btn btn-secondary btn-full" style="margin-top:12px" onclick="openHwEntryDirect('${childId}')">+ Thêm bài tập từ trường</button>`;
-  }
-
-  container.innerHTML = html;
-}
-
-async function renderChildSchedule(childId) {
-  const container = document.getElementById(`${childId}-schedule-content`);
-  container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
-  const slots = await getSchedule(childId);
-  if (slots.length === 0) {
-    container.innerHTML = '<div class="empty-state"><div class="empty-icon">📅</div><p>Bố mẹ chưa setup thời khoá biểu</p></div>';
-    return;
-  }
-
-  const dayNames = {'2':'Thứ 2','3':'Thứ 3','4':'Thứ 4','5':'Thứ 5','6':'Thứ 6','7':'Thứ 7','cn':'Chủ nhật'};
-  const dayOrder = ['2','3','4','5','6','7','cn'];
-  const todayDayNum = ['cn','2','3','4','5','6','7'][new Date().getDay()];
-
-  const byDay = {};
-  slots.forEach(s => (s.days||[]).forEach(d => {
-    if (!byDay[d]) byDay[d] = [];
-    byDay[d].push(s);
-  }));
-
-  let html = '';
-  dayOrder.forEach(d => {
-    if (!byDay[d]) return;
-    const isToday = d === todayDayNum;
-    html += `<div class="schedule-day">
-      <div class="schedule-day-header ${isToday?'today':''}">
-        ${isToday?'<span class="today-dot"></span>':''}
-        <span class="day-label">${dayNames[d]}${isToday?' (Hôm nay)':''}</span>
-      </div>`;
-    byDay[d].sort((a,b)=>a.timeStart?.localeCompare(b.timeStart||'')||0).forEach(s => {
-      const typeIcon = s.type==='extra'?'🎯':s.type==='activity'?'🎨':'📚';
-      html += `<div class="subject-slot">
-        <span class="slot-time">${s.timeStart||'--:--'}</span>
-        <div style="flex:1"><div class="slot-subject">${typeIcon} ${s.subject}</div></div>
-        ${childId==='shin'&&isToday?`<span class="slot-add" onclick="openHwEntry('${childId}','${s.subject}','${s.id}')">＋</span>`:''}
+        </div>
       </div>`;
     });
-    html += '</div>';
-  });
-  container.innerHTML = html;
+  }
+  return html;
 }
 
-async function renderChildStars(childId) {
-  const container = document.getElementById(`${childId}-stars-content`);
-  container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+// ══════════════════════════════════════
+// PAGE: EVALUATE
+// ══════════════════════════════════════
+async function renderParentEvaluatePage(){
+  const area=document.getElementById('parent-page-area');
+  area.innerHTML=`<div class="page-header"><div class="page-title">⭐ Đánh giá</div><div class="page-sub">Ý thức & phần thưởng</div></div><div class="page-body"><div class="loading"><div class="spinner"></div></div></div>`;
+  const body=area.querySelector('.page-body');
+  let html='';
+  for(const child of CHILDREN){
+    const hws=await fsQuery('homeworks','childId',child.id);
+    const stars=await fsGet('stars',child.id)||{total:0,streak:0};
+    const done=hws.filter(h=>h.done);
+    const onTime=done.filter(h=>h.deadline&&daysUntil(h.deadline)>=0).length;
+    const gifts=await fsGetAll('gifts').then(g=>g.filter(x=>x.childId===child.id||x.childId==='all'));
+    html+=`<div class="card">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+        <span style="font-size:32px">${child.avatar}</span>
+        <div style="flex:1"><div style="font-size:17px;font-weight:800">${child.name}</div></div>
+        <div style="text-align:center"><div style="font-size:28px;font-weight:900;font-family:'Baloo 2',cursive">⭐${stars.total||0}</div><div style="font-size:11px;color:var(--text-soft)">sao</div></div>
+      </div>
+      <div class="child-stats">
+        <div class="child-stat"><div class="stat-num" style="color:var(--green)">${done.length}</div><div class="stat-label">Đã xong</div></div>
+        <div class="child-stat"><div class="stat-num" style="color:var(--primary)">${onTime}</div><div class="stat-label">Đúng hạn</div></div>
+        <div class="child-stat"><div class="stat-num" style="color:var(--orange)">${stars.streak||0}🔥</div><div class="stat-label">Streak</div></div>
+      </div>
+      ${awareBadge(done,hws.length)}
+      <div style="margin-top:12px;display:flex;gap:8px">
+        <button class="btn btn-sm btn-secondary" onclick="addStarManual('${child.id}')">⭐ +1 Sao</button>
+        <button class="btn btn-sm btn-secondary" onclick="openGiftModal('${child.id}')">🎁 Quản lý quà</button>
+      </div>
+    </div>`;
+  }
+  body.innerHTML=html;
+}
 
-  const starsData = await getStars(childId);
-  const stars = starsData?.total || 0;
-  const streak = starsData?.streak || 0;
-  const gifts = await getGifts(childId);
+function awareBadge(done,total){
+  if(!done.length)return'';
+  const rate=done.length/Math.max(total,1);
+  if(rate>=0.9)return`<div class="awareness-card excellent" style="margin-top:10px"><p style="color:white;font-size:13px">🌟 Xuất sắc — Hoàn thành rất tốt!</p></div>`;
+  if(rate>=0.7)return`<div class="awareness-card good" style="margin-top:10px"><p style="color:white;font-size:13px">😊 Tốt — Đang tiến bộ</p></div>`;
+  if(rate>=0.5)return`<div class="awareness-card needs-work" style="margin-top:10px"><p style="color:white;font-size:13px">⚡ Cần cố gắng hơn</p></div>`;
+  return`<div class="awareness-card poor" style="margin-top:10px"><p style="color:white;font-size:13px">💬 Cần nhắc nhở nhiều hơn</p></div>`;
+}
 
-  // Find next goal
-  const nextGift = gifts.sort((a,b)=>a.starsRequired-b.starsRequired).find(g=>g.starsRequired > stars);
-  const fillPct = nextGift ? Math.min(100, Math.round(stars/nextGift.starsRequired*100)) : 100;
+async function renderChildEvaluatePage(childId){
+  const area=document.getElementById(`${childId}-page-area`);
+  area.innerHTML='<div class="loading"><div class="spinner"></div></div>';
+  const stars=await fsGet('stars',childId)||{total:0,streak:0};
+  const gifts=(await fsGetAll('gifts')).filter(g=>g.childId===childId||g.childId==='all').sort((a,b)=>a.starsRequired-b.starsRequired);
+  const nextGift=gifts.find(g=>g.starsRequired>stars.total);
+  const fillPct=nextGift?Math.min(100,Math.round(stars.total/nextGift.starsRequired*100)):100;
 
-  let html = `
+  let html=`<div class="page-header"><div class="page-title">⭐ Sao của ${childId==='shin'?'Shin':'Teppi'}</div></div><div class="page-body">
   <div class="star-jar">
-    <div class="star-jar-header">
-      <span class="star-jar-title">⭐ Hũ sao của ${childId==='shin'?'Shin':'Teppi'}</span>
-    </div>
-    <div class="star-count">${stars} <span>sao</span></div>
-    ${nextGift ? `
-    <div class="star-bar"><div class="star-fill" style="width:${fillPct}%"></div></div>
-    <div class="star-goal-label">Còn ${nextGift.starsRequired - stars} sao nữa để được: ${nextGift.name}</div>
-    ` : '<div class="star-goal-label">🎉 Đã đủ sao nhận thưởng!</div>'}
-  </div>`;
+    <div style="font-size:14px;font-weight:800;opacity:.9;margin-bottom:4px">⭐ Hũ sao</div>
+    <div class="star-count">${stars.total||0} <span style="font-size:16px;opacity:.8">sao</span></div>
+    ${nextGift?`<div class="star-bar"><div class="star-fill" style="width:${fillPct}%"></div></div>
+    <div style="font-size:12px;opacity:.85;margin-top:6px">Còn ${nextGift.starsRequired-(stars.total||0)} sao nữa để được: ${nextGift.name}</div>`:'<div style="font-size:13px;opacity:.9;margin-top:8px">🎉 Đã đủ sao nhận thưởng!</div>'}
+  </div>
+  ${(stars.streak||0)>0?`<div class="streak-banner"><span style="font-size:36px">🔥</span><div><div style="font-family:'Baloo 2',cursive;font-size:32px;font-weight:800;line-height:1">${stars.streak}</div><div style="font-size:13px;opacity:.9">ngày liên tiếp hoàn thành đúng hạn!</div></div></div>`:''}`;
 
-  if (streak > 0) {
-    html += `<div class="streak-banner">
-      <div class="streak-fire">🔥</div>
-      <div>
-        <div class="streak-num">${streak}</div>
-        <div class="streak-label">ngày liên tiếp hoàn thành đúng hạn!</div>
-      </div>
-    </div>`;
-  }
-
-  if (gifts.length > 0) {
-    html += `<div class="gift-card"><h3>🎁 Phần thưởng</h3>`;
-    gifts.forEach(g => {
-      const unlocked = stars >= g.starsRequired;
-      html += `<div class="gift-item" style="${unlocked?'':'opacity:0.6'}">
-        <span class="gift-icon">${unlocked?'🎁':'🔒'}</span>
-        <div><div class="gift-name">${g.name}</div><div class="gift-req">${g.starsRequired} ⭐ ${unlocked?'— Đã đạt! 🎉':'cần'}</div></div>
+  if(gifts.length){
+    html+=`<div class="gift-card"><h3 style="font-size:15px;font-weight:800;margin-bottom:10px">🎁 Phần thưởng</h3>`;
+    gifts.forEach(g=>{
+      const unlocked=(stars.total||0)>=g.starsRequired;
+      html+=`<div style="background:rgba(255,255,255,.15);border-radius:10px;padding:10px 12px;margin-bottom:8px;display:flex;align-items:center;gap:10px;${unlocked?'':'opacity:.65'}">
+        <span style="font-size:22px">${unlocked?'🎁':'🔒'}</span>
+        <div><div style="font-weight:700;color:white">${g.name}</div><div style="font-size:12px;color:rgba(255,255,255,.8)">${g.starsRequired}⭐ ${unlocked?'— Đã đạt! 🎉':'cần'}</div></div>
       </div>`;
     });
-    html += '</div>';
+    html+=`</div>`;
   }
-
-  container.innerHTML = html;
-}
-
-async function checkAlerts(childId) {
-  const container = document.getElementById(`${childId}-alerts`);
-  const hws = await getChildHomeworks(childId);
-  const urgent = hws.filter(h => !h.done && daysUntil(h.deadline) !== null && daysUntil(h.deadline) <= 1 && daysUntil(h.deadline) >= 0);
-  if (urgent.length === 0) { container.innerHTML = ''; return; }
-  let html = '';
-  urgent.forEach(h => {
-    html += `<div class="alert-banner">
-      <span class="alert-icon">⚠️</span>
-      <p>"${h.name}" ${daysUntil(h.deadline)===0?'đến hạn HÔM NAY':'đến hạn NGÀY MAI'}! Con làm ngay nhé!</p>
-    </div>`;
-  });
-  container.innerHTML = html;
+  html+=`</div>`;
+  area.innerHTML=html;
 }
 
 // ══════════════════════════════════════
-// PRIORITY MODAL
+// PAGE: SETTINGS
 // ══════════════════════════════════════
-window.openPriorityModal = async function(childId) {
-  const hws = (await getChildHomeworks(childId)).filter(h=>!h.done);
-  // Simple priority assignment via numbers
-  let html = `<div style="position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:300;display:flex;align-items:flex-end;justify-content:center" id="priority-overlay">
-  <div style="background:white;border-radius:24px 24px 0 0;width:100%;max-width:480px;padding:24px 20px 32px;max-height:85vh;overflow-y:auto">
-    <div style="width:40px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 16px"></div>
-    <div style="font-size:18px;font-weight:800;margin-bottom:6px">📋 Sắp xếp thứ tự</div>
-    <div style="font-size:13px;color:var(--text-soft);margin-bottom:16px">Con hãy chọn thứ tự làm bài nào trước, bài nào sau</div>
-    <div id="priority-items">`;
-
-  hws.forEach((h,i) => {
-    html += `<div style="display:flex;align-items:center;gap:12px;padding:12px;background:var(--bg);border-radius:12px;margin-bottom:8px">
-      <select style="width:52px;padding:6px;border:1.5px solid var(--border);border-radius:8px;font-family:Nunito,sans-serif;font-weight:700" id="prio-${h.id}">
-        ${hws.map((_,j)=>`<option value="${j+1}" ${(h.priority||i+1)===j+1?'selected':''}>${j+1}</option>`).join('')}
-      </select>
-      <div>
-        <div style="font-size:14px;font-weight:700">${h.name}</div>
-        <div style="font-size:12px;color:var(--text-soft)">${h.subject||''} ${h.deadline?'• '+formatDate(h.deadline):''}</div>
-      </div>
-    </div>`;
-  });
-
-  html += `</div>
-    <button class="btn btn-primary btn-full" style="margin-top:12px" onclick="savePriority('${childId}',${JSON.stringify(hws.map(h=>h.id))})">💾 Lưu thứ tự</button>
-    <button class="btn btn-secondary btn-full" style="margin-top:8px" onclick="document.getElementById('priority-overlay').remove()">Huỷ</button>
+async function renderParentSettingsPage(){
+  const area=document.getElementById('parent-page-area');
+  area.innerHTML=`<div class="page-header"><div class="page-title">⚙️ Cài đặt</div></div><div class="page-body">
+  <div class="settings-list">
+    <div class="settings-item" onclick="openGiftModal('all')"><span class="si-icon">🎁</span><span class="si-label">Quản lý phần thưởng</span><span>›</span></div>
+    <div class="settings-item" onclick="openModal('modal-schedule')"><span class="si-icon">📅</span><span class="si-label">Thêm môn học</span><span>›</span></div>
+    <div class="settings-item" onclick="logout()"><span class="si-icon">🚪</span><span class="si-label">Đăng xuất</span><span>›</span></div>
   </div></div>`;
-
-  document.body.insertAdjacentHTML('beforeend', html);
-};
-
-window.savePriority = async function(childId, hwIds) {
-  for (const id of hwIds) {
-    const val = parseInt(document.getElementById(`prio-${id}`)?.value || '99');
-    await fsUpdate('homeworks', id, { priority: val });
-  }
-  document.getElementById('priority-overlay')?.remove();
-  toast('✅ Đã lưu thứ tự!');
-  renderChildToday(childId);
-};
+}
+async function renderChildSettingsPage(childId){
+  const area=document.getElementById(`${childId}-page-area`);
+  area.innerHTML=`<div class="page-header"><div class="page-title">⚙️ Cài đặt</div></div><div class="page-body">
+  <div class="settings-list">
+    <div class="settings-item" onclick="logout()"><span class="si-icon">🚪</span><span class="si-label">Đăng xuất</span><span>›</span></div>
+  </div></div>`;
+}
 
 // ══════════════════════════════════════
-// MARK DONE
+// HW ENTRY MODAL
 // ══════════════════════════════════════
-window.markDone = function(hwId, childId) {
-  currentRatingHwId = { hwId, childId };
-  document.querySelector('.modal-overlay#modal-self-rate').classList.add('open');
+window.openHwEntryFromSlot=function(childId,subject,slotId){
+  _hwEntryCtx={childId,subject,slotId};
+  document.getElementById('hw-entry-title').textContent=`📖 BTVN — ${subject}`;
+  ['hw-lesson','hw-name','hw-book','hw-page'].forEach(id=>document.getElementById(id).value='');
+  const tmr=new Date();tmr.setDate(tmr.getDate()+1);
+  document.getElementById('hw-deadline-date').value=tmr.toISOString().split('T')[0];
+  document.getElementById('hw-deadline-time').value='21:00';
+  openModal('modal-hw-entry');
 };
-
-window.selectRate = function(difficulty) {
-  document.querySelectorAll('.rate-opt').forEach(el => el.classList.remove('selected'));
-  event.currentTarget.classList.add('selected');
-  window._selectedDifficulty = difficulty;
+window.openHwEntryDirect=function(childId){
+  _hwEntryCtx={childId,subject:'',slotId:null};
+  document.getElementById('hw-entry-title').textContent='📖 Thêm BTVN';
+  ['hw-lesson','hw-name','hw-book','hw-page'].forEach(id=>document.getElementById(id).value='');
+  const tmr=new Date();tmr.setDate(tmr.getDate()+1);
+  document.getElementById('hw-deadline-date').value=tmr.toISOString().split('T')[0];
+  openModal('modal-hw-entry');
 };
-
-window.submitSelfRate = async function() {
-  if (!currentRatingHwId) return;
-  const { hwId, childId } = currentRatingHwId;
-  const difficulty = window._selectedDifficulty || 'medium';
-  const needHelp = document.getElementById('rate-need-help').value;
-
-  await fsUpdate('homeworks', hwId, { done:true, difficulty, needHelp, status:'done' });
-
-  // Add star
-  await addStar(childId, 1);
-  closeModal('modal-self-rate');
-  toast('⭐ +1 sao! Giỏi lắm!');
-  renderChildToday(childId);
-  renderChildStars(childId);
-  window._selectedDifficulty = null;
-  document.querySelectorAll('.rate-opt').forEach(el => el.classList.remove('selected'));
-};
-
-// ══════════════════════════════════════
-// HW ENTRY (Con tự nhập)
-// ══════════════════════════════════════
-window.openHwEntry = function(childId, subject, slotId) {
-  currentHwEntryContext = { childId, subject, slotId };
-  document.getElementById('hw-entry-title').textContent = `📖 BTVN — ${subject}`;
-  document.getElementById('hw-entry-name').value = '';
-  document.getElementById('hw-entry-book').value = '';
-  document.getElementById('hw-entry-page').value = '';
-  document.getElementById('hw-lesson-content').value = '';
-  // Default deadline = tomorrow
-  const tmr = new Date(); tmr.setDate(tmr.getDate()+1);
-  document.getElementById('hw-entry-deadline').value = tmr.toISOString().split('T')[0];
-  document.getElementById('modal-hw-entry').classList.add('open');
-};
-
-window.openHwEntryDirect = function(childId) {
-  currentHwEntryContext = { childId, subject: null, slotId: null };
-  document.getElementById('hw-entry-title').textContent = '📖 Thêm bài tập từ trường';
-  document.getElementById('hw-entry-name').value = '';
-  document.getElementById('hw-entry-book').value = '';
-  document.getElementById('hw-entry-page').value = '';
-  document.getElementById('hw-lesson-content').value = '';
-  const tmr = new Date(); tmr.setDate(tmr.getDate()+1);
-  document.getElementById('hw-entry-deadline').value = tmr.toISOString().split('T')[0];
-  document.getElementById('modal-hw-entry').classList.add('open');
-};
-
-window.submitHwEntry = async function() {
-  const name = document.getElementById('hw-entry-name').value.trim();
-  if (!name) { toast('⚠️ Nhập tên bài tập nhé!'); return; }
-  const { childId, subject } = currentHwEntryContext;
+window.submitHwEntry=async function(){
+  const name=document.getElementById('hw-name').value.trim();
+  if(!name){toast('⚠️ Nhập tên BTVN nhé!');return;}
+  const{childId,subject}=_hwEntryCtx;
+  const dl=document.getElementById('hw-deadline-date').value;
+  const tm=document.getElementById('hw-deadline-time').value;
   await fsAdd('homeworks',{
-    childId, name, subject: subject||'',
-    book: document.getElementById('hw-entry-book').value.trim(),
-    page: document.getElementById('hw-entry-page').value.trim(),
-    lessonContent: document.getElementById('hw-lesson-content').value.trim(),
-    deadline: document.getElementById('hw-entry-deadline').value,
-    source:'child', status:'pending_review', done:false
+    childId,name,subject:subject||'',
+    lessonContent:document.getElementById('hw-lesson').value.trim(),
+    book:document.getElementById('hw-book').value.trim(),
+    page:document.getElementById('hw-page').value.trim(),
+    deadline:dl,deadlineTime:tm,
+    source:'child',status:'pending_review',done:false,priority:null
   });
   closeModal('modal-hw-entry');
   toast('📥 Đã lưu! Bố mẹ sẽ duyệt nhé.');
-  renderChildToday(childId);
+  refreshCurrentPage(childId);
 };
 
 // ══════════════════════════════════════
-// ASSIGN (Admin)
+// ASSIGN MODAL (Admin)
 // ══════════════════════════════════════
-window.openAssignModal = function() {
-  document.getElementById('assign-deadline').value = '';
-  document.getElementById('modal-assign').classList.add('open');
+window.openAssignModal=function(childId){
+  document.getElementById('assign-child').value=childId||'shin';
+  ['assign-subject','assign-lesson','assign-name','assign-book','assign-page','assign-link'].forEach(id=>document.getElementById(id).value='');
+  const tmr=new Date();tmr.setDate(tmr.getDate()+1);
+  document.getElementById('assign-deadline-date').value=tmr.toISOString().split('T')[0];
+  openModal('modal-assign');
 };
-
-window.openAssignModalFor = function(childId) {
-  document.getElementById('assign-child').value = childId;
-  document.getElementById('assign-deadline').value = '';
-  document.getElementById('modal-assign').classList.add('open');
-};
-
-window.submitAssign = async function() {
-  const name = document.getElementById('assign-name').value.trim();
-  const childId = document.getElementById('assign-child').value;
-  const subject = document.getElementById('assign-subject').value.trim();
-  const deadline = document.getElementById('assign-deadline').value;
-  if (!name || !deadline) { toast('⚠️ Điền tên bài và deadline nhé!'); return; }
+window.submitAssign=async function(){
+  const name=document.getElementById('assign-name').value.trim();
+  const dl=document.getElementById('assign-deadline-date').value;
+  const childId=document.getElementById('assign-child').value;
+  if(!name||!dl){toast('⚠️ Điền tên bài và deadline nhé!');return;}
   await fsAdd('homeworks',{
-    childId, name, subject,
-    link: document.getElementById('assign-link').value.trim(),
-    note: document.getElementById('assign-note').value.trim(),
-    deadline, source:'parent', status:'assigned', done:false
+    childId,name,
+    subject:document.getElementById('assign-subject').value.trim(),
+    lessonContent:document.getElementById('assign-lesson').value.trim(),
+    book:document.getElementById('assign-book').value.trim(),
+    page:document.getElementById('assign-page').value.trim(),
+    link:document.getElementById('assign-link').value.trim(),
+    deadline:dl,deadlineTime:document.getElementById('assign-deadline-time').value,
+    source:'parent',status:'todo',done:false,priority:null
   });
   closeModal('modal-assign');
-  toast('✅ Đã giao bài cho ' + (childId==='shin'?'Shin':'Teppi'));
-  loadParentDashboard();
-  ['assign-name','assign-subject','assign-link','assign-note'].forEach(id => document.getElementById(id).value='');
+  toast('✅ Đã giao bài!');
+  refreshCurrentPage(childId);
 };
 
 // ══════════════════════════════════════
-// APPROVE
+// STATUS UPDATE
 // ══════════════════════════════════════
-window.approveHw = async function(hwId, childId) {
-  await fsUpdate('homeworks', hwId, { status:'approved' });
+window.updateHwStatus=function(hwId,childId,newStatus){
+  if(newStatus==='done'){
+    _ratingId={hwId,childId};
+    openModal('modal-self-rate');
+  } else {
+    fsUpdate('homeworks',hwId,{status:newStatus}).then(()=>{
+      toast(newStatus==='doing'?'▶️ Đang làm!':'');
+      refreshCurrentPage(childId);
+    });
+  }
+};
+window.selectRate=function(diff,el){
+  document.querySelectorAll('.rate-opt').forEach(e=>{e.style.borderColor='var(--border)';e.style.background='white';});
+  el.style.borderColor='var(--primary)';el.style.background='var(--primary-light)';
+  _selectedDifficulty=diff;
+};
+window.submitSelfRate=async function(){
+  if(!_ratingId)return;
+  const{hwId,childId}=_ratingId;
+  await fsUpdate('homeworks',hwId,{done:true,status:'done',difficulty:_selectedDifficulty||'medium',needHelp:document.getElementById('rate-need-help').value});
+  await addStar(childId,1);
+  closeModal('modal-self-rate');
+  toast('⭐ +1 sao! Giỏi lắm!');
+  _selectedDifficulty=null;
+  document.querySelectorAll('.rate-opt').forEach(e=>{e.style.borderColor='var(--border)';e.style.background='white';});
+  refreshCurrentPage(childId);
+};
+
+window.approveHw=async function(hwId,childId){
+  await fsUpdate('homeworks',hwId,{status:'todo'});
   toast('✅ Đã duyệt!');
-  loadParentDashboard();
+  renderDashChildContent(childId);
+};
+window.deleteHw=async function(hwId,childId){
+  if(!confirm('Xoá bài tập này?'))return;
+  await fsDelete('homeworks',hwId);
+  toast('🗑 Đã xoá!');
+  renderTodoContent(childId);
 };
 
 // ══════════════════════════════════════
 // COMMENT
 // ══════════════════════════════════════
-window.openCommentModalHw = function(hwId, childId, hwName) {
-  currentCommentHwId = { hwId, childId };
-  document.getElementById('comment-hw-name').textContent = hwName;
-  document.getElementById('comment-text').value = '';
-  document.getElementById('modal-comment').classList.add('open');
+let _commentHwId=null,_commentChildId=null;
+window.openCommentModalHw=function(hwId,hwName){
+  _commentHwId=hwId;_commentChildId=null;
+  document.getElementById('comment-hw-label').textContent=hwName;
+  document.getElementById('comment-text').value='';
+  openModal('modal-comment');
 };
-
-window.openCommentModal = function(hwId, childId) {
-  currentCommentHwId = { hwId, childId };
-  document.getElementById('comment-hw-name').textContent = '';
-  document.getElementById('comment-text').value = '';
-  document.getElementById('modal-comment').classList.add('open');
+window.openCommentModal=function(hwId,childId){
+  _commentHwId=hwId;_commentChildId=childId;
+  document.getElementById('comment-hw-label').textContent='Nhắn nhủ';
+  document.getElementById('comment-text').value='';
+  openModal('modal-comment');
 };
-
-window.quickComment = function(text) {
-  document.getElementById('comment-text').value = text;
-};
-
-window.submitComment = async function() {
-  if (!currentCommentHwId) return;
-  const { hwId, childId } = currentCommentHwId;
-  const text = document.getElementById('comment-text').value.trim();
-  if (!text) { toast('⚠️ Nhập nhận xét nhé!'); return; }
-  if (hwId) {
-    await fsUpdate('homeworks', hwId, { comment:text, commentBy: currentUser?.name||'Bố/Mẹ' });
-  }
+window.qComment=function(t){document.getElementById('comment-text').value=t;};
+window.submitComment=async function(){
+  const text=document.getElementById('comment-text').value.trim();
+  if(!text){toast('⚠️ Nhập nhận xét nhé!');return;}
+  if(_commentHwId) await fsUpdate('homeworks',_commentHwId,{comment:text,commentBy:CU?.name||'Bố/Mẹ'});
   closeModal('modal-comment');
-  toast('💬 Đã gửi nhận xét!');
-  loadParentDashboard();
+  toast('💬 Đã gửi!');
 };
 
 // ══════════════════════════════════════
-// SCHEDULE
+// PRIORITY MODAL
 // ══════════════════════════════════════
-window.openScheduleModal = function() {
-  document.getElementById('sched-subject').value = '';
-  document.getElementById('sched-time-start').value = '';
-  document.getElementById('sched-time-end').value = '';
-  document.querySelectorAll('#sched-days input').forEach(cb => cb.checked = false);
-  document.getElementById('modal-schedule').classList.add('open');
-};
-
-window.submitSchedule = async function() {
-  const childId = document.getElementById('sched-child').value;
-  const subject = document.getElementById('sched-subject').value.trim();
-  if (!subject) { toast('⚠️ Nhập tên môn học!'); return; }
-  const days = [...document.querySelectorAll('#sched-days input:checked')].map(cb=>cb.value);
-  await fsAdd('schedule',{
-    childId, subject,
-    type: document.getElementById('sched-type').value,
-    days,
-    timeStart: document.getElementById('sched-time-start').value,
-    timeEnd: document.getElementById('sched-time-end').value
+window.openPriorityModal=async function(childId){
+  _priorityCtx=childId;
+  const hws=(await fsQuery('homeworks','childId',childId)).filter(h=>!h.done);
+  let html='';
+  hws.forEach((h,i)=>{
+    html+=`<div style="display:flex;align-items:center;gap:10px;padding:10px;background:var(--bg);border-radius:10px;margin-bottom:8px">
+      <select style="width:52px;padding:6px;border:1.5px solid var(--border);border-radius:8px;font-family:Nunito,sans-serif;font-weight:700" id="prio-${h.id}">
+        ${hws.map((_,j)=>`<option value="${j+1}" ${(h.priority||i+1)===j+1?'selected':''}>${j+1}</option>`).join('')}
+      </select>
+      <div><div style="font-size:13px;font-weight:700">${h.name}</div><div style="font-size:12px;color:var(--text-soft)">${h.subject||''} ${h.deadline?'• '+formatDate(h.deadline):''}</div></div>
+    </div>`;
   });
-  closeModal('modal-schedule');
-  toast('📅 Đã thêm vào thời khoá biểu!');
-  renderParentSchedule(childId);
+  document.getElementById('priority-items').innerHTML=html||'<p style="color:var(--text-soft)">Không có bài tập nào</p>';
+  openModal('modal-priority');
 };
-
-window.deleteScheduleSlot = async function(slotId, childId) {
-  if (!confirm('Xoá môn học này?')) return;
-  await fsDelete('schedule', slotId);
-  toast('🗑 Đã xoá!');
-  renderParentSchedule(childId);
+window.savePriority=async function(){
+  if(!_priorityCtx)return;
+  const childId=_priorityCtx;
+  const hws=(await fsQuery('homeworks','childId',childId)).filter(h=>!h.done);
+  for(const h of hws){
+    const v=parseInt(document.getElementById(`prio-${h.id}`)?.value||'99');
+    await fsUpdate('homeworks',h.id,{priority:v});
+  }
+  closeModal('modal-priority');
+  toast('✅ Đã lưu thứ tự!');
+  refreshCurrentPage(childId);
 };
 
 // ══════════════════════════════════════
-// GIFTS
+// STARS & GIFTS
 // ══════════════════════════════════════
-window.openGiftsModal = async function() {
-  await renderGiftsList();
-  document.getElementById('modal-gifts').classList.add('open');
-};
-
-async function renderGiftsList() {
-  const container = document.getElementById('gifts-list');
-  const gifts = await fsGetAll('gifts');
-  if (gifts.length===0) { container.innerHTML = '<p style="color:var(--text-soft);font-size:13px">Chưa có phần thưởng nào</p>'; return; }
-  container.innerHTML = gifts.map(g=>`
-    <div class="gift-item" style="background:var(--primary-light);border-radius:12px;padding:10px 12px;margin-bottom:8px">
-      <span class="gift-icon">🎁</span>
-      <div style="flex:1"><div class="gift-name" style="color:var(--text)">${g.name}</div><div class="gift-req" style="color:var(--text-soft)">${g.starsRequired}⭐ • ${g.childId==='all'?'Cả hai':g.childId}</div></div>
-      <button class="btn btn-sm btn-danger" onclick="deleteGift('${g.id}')">🗑</button>
-    </div>`).join('');
+async function addStar(childId,count){
+  const d=await fsGet('stars',childId)||{total:0,streak:0};
+  await fsSet('stars',childId,{total:(d.total||0)+count,streak:d.streak||0});
 }
-
-window.addGift = async function() {
-  const name = document.getElementById('gift-name-input').value.trim();
-  const stars = parseInt(document.getElementById('gift-stars-input').value);
-  const childId = document.getElementById('gift-child-input').value;
-  if (!name || !stars) { toast('⚠️ Điền đủ thông tin!'); return; }
-  await fsAdd('gifts',{ name, starsRequired:stars, childId });
-  document.getElementById('gift-name-input').value='';
-  document.getElementById('gift-stars-input').value='';
-  toast('🎁 Đã thêm phần thưởng!');
-  renderGiftsList();
+window.addStarManual=async function(childId){
+  await addStar(childId,1);
+  toast('⭐ +1 sao!');
+  renderParentEvaluatePage();
 };
-
-window.deleteGift = async function(id) {
-  await fsDelete('gifts',id);
-  toast('🗑 Đã xoá!');
-  renderGiftsList();
+window.openGiftModal=function(childId){
+  // Simple inline: show prompt
+  const name=prompt('Tên phần thưởng:');
+  if(!name)return;
+  const stars=parseInt(prompt('Số sao cần:')||'0');
+  const cid=childId==='all'?prompt('Dành cho (shin/teppi/all):','all'):childId;
+  fsAdd('gifts',{name,starsRequired:stars,childId:cid}).then(()=>toast('🎁 Đã thêm phần thưởng!'));
 };
 
 // ══════════════════════════════════════
-// FIRESTORE HELPERS
+// SCHEDULE HELPERS
 // ══════════════════════════════════════
-async function getChildHomeworks(childId) {
-  return await fsQuery('homeworks','childId',childId);
-}
-
-async function getSchedule(childId) {
-  let slots = await fsQuery('schedule','childId',childId);
-  if (slots.length === 0) {
-    const defaults = childId==='shin'?DEFAULT_SCHEDULE_SHIN:DEFAULT_SCHEDULE_TEPPI;
-    for (const s of defaults) await fsAdd('schedule',{...s,childId});
-    slots = await fsQuery('schedule','childId',childId);
+async function getSchedule(childId){
+  let slots=await fsQuery('schedule','childId',childId);
+  if(!slots.length){
+    const defaults=childId==='shin'?SHIN_DEFAULT_SCHEDULE:TEPPI_DEFAULT_SCHEDULE;
+    for(const s of defaults)await fsAdd('schedule',{...s,childId});
+    slots=await fsQuery('schedule','childId',childId);
   }
   return slots;
 }
-
-async function getStars(childId) {
-  const d = await fsGet('stars',childId);
-  return d || { total:0, streak:0 };
-}
-
-async function addStar(childId, count) {
-  const data = await getStars(childId);
-  await fsSet('stars', childId, { total:(data.total||0)+count, streak:data.streak||0 });
-}
-
-async function getGifts(childId) {
-  const all = await fsGetAll('gifts');
-  return all.filter(g=>g.childId===childId||g.childId==='all');
-}
+window.deleteSlot=async function(slotId,childId){
+  await fsDelete('schedule',slotId);
+  toast('🗑 Đã xoá!');
+  renderSchedContent(childId||_schedChild);
+};
+window.submitSchedule=async function(){
+  const childId=document.getElementById('sched-child').value;
+  const subject=document.getElementById('sched-subject').value.trim();
+  if(!subject){toast('⚠️ Nhập tên môn!');return;}
+  const days=[...document.querySelectorAll('#sched-days input:checked')].map(cb=>cb.value);
+  await fsAdd('schedule',{childId,subject,type:document.getElementById('sched-type').value,days,timeStart:document.getElementById('sched-start').value,timeEnd:document.getElementById('sched-end').value});
+  closeModal('modal-schedule');toast('📅 Đã thêm!');
+  renderSchedContent(childId);
+};
+window.clearScheduleConfirm=async function(){
+  if(!confirm(`Xoá TKB của ${_schedChild}?`))return;
+  const slots=await fsQuery('schedule','childId',_schedChild);
+  for(const s of slots)await fsDelete('schedule',s.id);
+  toast('🗑 Đã xoá TKB!');
+  renderSchedContent(_schedChild);
+};
 
 // ══════════════════════════════════════
-// NAVIGATION HELPERS
+// EXCEL UPLOAD
 // ══════════════════════════════════════
-window.switchParentTab = function(tab) {
-  document.querySelectorAll('#screen-parent .tab-btn').forEach((btn,i) => {
-    btn.classList.toggle('active', ['dashboard','checklist','schedule','history'][i]===tab);
-  });
-  document.querySelectorAll('#screen-parent .page-tab').forEach(el => el.classList.remove('active'));
-  document.getElementById(`ptab-${tab}`)?.classList.add('active');
-  if (tab==='checklist') renderParentChecklist();
-  if (tab==='history') renderParentHistory(currentHistoryChild);
+window.handleExcelUpload=async function(event){
+  const file=event.target.files[0];if(!file)return;
+  const status=document.getElementById('upload-status');
+  status.innerHTML='⏳ Đang đọc file...';
+  try{
+    const data=await file.arrayBuffer();
+    const wb=XLSX.read(data,{type:'array'});
+    const ws=wb.Sheets[wb.SheetNames[0]];
+    const rows=XLSX.utils.sheet_to_json(ws,{header:1,defval:''});
+    const DAY_MAP={'thứ 2':['2'],'thu 2':['2'],'t2':['2'],'monday':['2'],'thứ 3':['3'],'thu 3':['3'],'t3':['3'],'tuesday':['3'],'thứ 4':['4'],'thu 4':['4'],'t4':['4'],'wednesday':['4'],'thứ 5':['5'],'thu 5':['5'],'t5':['5'],'thursday':['5'],'thứ 6':['6'],'thu 6':['6'],'t6':['6'],'friday':['6'],'thứ 7':['7'],'thu 7':['7'],'t7':['7'],'saturday':['7'],'chủ nhật':['cn'],'chu nhat':['cn'],'cn':['cn'],'sunday':['cn']};
+    let headerRowIdx=-1,dayColMap={};
+    for(let i=0;i<Math.min(5,rows.length);i++){
+      const row=rows[i];let found=0;
+      row.forEach((cell,ci)=>{const key=String(cell).toLowerCase().trim();if(DAY_MAP[key]){dayColMap[ci]=DAY_MAP[key][0];found++;}});
+      if(found>=2){headerRowIdx=i;break;}
+    }
+    if(headerRowIdx===-1){status.innerHTML='❌ Không tìm thấy hàng tiêu đề (Thứ 2, Thứ 3...). Kiểm tra lại file.';return;}
+    const imported=[];
+    for(let r=headerRowIdx+1;r<rows.length;r++){
+      const row=rows[r];
+      const timeCell=String(row[0]||'').trim();
+      const timeMatch=timeCell.match(/(\d{1,2})[:\.](\d{2})/);
+      const timeStart=timeMatch?`${timeMatch[1].padStart(2,'0')}:${timeMatch[2]}`:timeCell;
+      Object.entries(dayColMap).forEach(([ci,day])=>{
+        const subject=String(row[ci]||'').trim();
+        if(!subject||subject==='-'||subject==='—')return;
+        const existing=imported.find(x=>x.subject===subject&&x.timeStart===timeStart);
+        if(existing){if(!existing.days.includes(day))existing.days.push(day);}
+        else imported.push({subject,timeStart,timeEnd:'',days:[day],type:'school'});
+      });
+    }
+    if(!imported.length){status.innerHTML='❌ Không đọc được dữ liệu.';return;}
+    const childId=_schedChild;
+    status.innerHTML=`⏳ Đang lưu ${imported.length} môn...`;
+    const old=await fsQuery('schedule','childId',childId);
+    for(const s of old)await fsDelete('schedule',s.id);
+    for(const s of imported)await fsAdd('schedule',{...s,childId});
+    status.innerHTML=`✅ Import thành công ${imported.length} môn!`;
+    event.target.value='';
+    renderSchedContent(childId);
+    setTimeout(()=>{status.innerHTML='';},3000);
+  }catch(e){console.error(e);status.innerHTML='❌ Lỗi đọc file.';}
 };
 
-window.switchScheduleChild = function(childId) {
-  currentScheduleChild = childId;
-  document.querySelectorAll('#ptab-schedule .tab-btn').forEach((btn,i)=>{
-    btn.classList.toggle('active',['shin','teppi'][i]===childId);
-  });
-  renderParentSchedule(childId);
-};
+// ══════════════════════════════════════
+// UTIL
+// ══════════════════════════════════════
+window.openModal=function(id){document.getElementById(id)?.classList.add('open');};
+window.closeModal=function(id){document.getElementById(id)?.classList.remove('open');};
+document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('open');}));
 
-window.switchHistoryChild = function(childId) {
-  currentHistoryChild = childId;
-  document.querySelectorAll('#ptab-history .tab-btn').forEach((btn,i)=>{
-    btn.classList.toggle('active',['all','shin','teppi'][i]===childId);
-  });
-  renderParentHistory(childId);
-};
-
-window.switchChildTab = function(childId, tab) {
-  const tabs = childId==='shin'?['today','schedule','stars']:['today','stars'];
-  document.querySelectorAll(`#screen-${childId} .tab-btn`).forEach((btn,i)=>{
-    btn.classList.toggle('active',tabs[i]===tab);
-  });
-  document.querySelectorAll(`#screen-${childId} .page-tab`).forEach(el=>el.classList.remove('active'));
-  document.getElementById(`${childId}-tab-${tab}`)?.classList.add('active');
-};
-
-window.closeModal = function(id) {
-  document.getElementById(id)?.classList.remove('open');
-};
-
-// Close modal on overlay click
-document.querySelectorAll('.modal-overlay').forEach(overlay => {
-  overlay.addEventListener('click', e => {
-    if (e.target === overlay) overlay.classList.remove('open');
-  });
-});
+function refreshCurrentPage(childId){
+  if(CU?.role==='parent'){
+    // refresh whichever tab is active
+    const active=document.querySelector('#parent-sidebar .nav-item.active');
+    if(active)active.click();
+  } else {
+    const active=document.querySelector(`#${childId}-sidebar .nav-item.active`);
+    if(active)active.click();
+  }
+}
 </script>
 </body>
 </html>
